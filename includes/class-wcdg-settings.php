@@ -10,10 +10,10 @@ class WCDG_Settings
 
     public static function default_settings(): array
     {
-        $btc_qr_url = self::get_bundled_wallet_qr_url(array('btc-wallet.png', 'btc.jpeg'));
-        $eth_qr_url = self::get_bundled_wallet_qr_url(array('eth-wallet.png', 'eth.jpeg'));
-        $usdt_trc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-trc20-wallet.png', 'usdttrc20.jpeg'));
-        $usdt_erc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-erc20-wallet.png', 'usdterc20.jpeg'));
+        $btc_qr_url = self::get_bundled_wallet_qr_url(array('btc-wallet.jpeg', 'btc-wallet.png', 'btc.jpeg'));
+        $eth_qr_url = self::get_bundled_wallet_qr_url(array('eth-wallet.jpeg', 'eth-wallet.png', 'eth.jpeg'));
+        $usdt_trc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-trc20-wallet.jpeg', 'usdt-trc20-wallet.png', 'usdttrc20.jpeg'));
+        $usdt_erc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-erc20-wallet.jpeg', 'usdt-erc20-wallet.png', 'usdterc20.jpeg'));
 
         return array(
             'merchant_name' => get_bloginfo('name') ?: 'Merchant',

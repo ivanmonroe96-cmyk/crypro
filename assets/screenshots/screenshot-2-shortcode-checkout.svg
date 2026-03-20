@@ -48,9 +48,9 @@
   <text x="166" y="460" font-size="21" font-family="Arial, sans-serif" fill="#667487">Merchants can keep live QR generation or upload a wallet app screenshot for any address.</text>
   <rect x="166" y="502" width="528" height="76" rx="22" fill="#f5f8fc" stroke="#d7dfeb"/>
   <text x="194" y="536" font-size="17" font-family="Arial, sans-serif" fill="#667487">BTC / Bitcoin / uid: btc-bitcoin</text>
-  <text x="194" y="564" font-size="24" font-family="Arial, sans-serif" fill="#0f1722" font-weight="700">QR Mode: Dynamic</text>
+  <text x="194" y="564" font-size="24" font-family="Arial, sans-serif" fill="#0f1722" font-weight="700">QR Mode: Static image</text>
   <rect x="166" y="604" width="528" height="76" rx="22" fill="#f5f8fc" stroke="#d7dfeb"/>
   <text x="194" y="638" font-size="17" font-family="Arial, sans-serif" fill="#667487">Optional static QR image URL</text>
-  <text x="194" y="666" font-size="22" font-family="Arial, sans-serif" fill="#0f1722">/assets/wallet-qr/btc-wallet.png</text>
+  <text x="194" y="666" font-size="22" font-family="Arial, sans-serif" fill="#0f1722">/assets/wallet-qr/btc-wallet.jpeg</text>
   <text x="120" y="844" font-size="18" font-family="Arial, sans-serif" fill="#667487">Prepared SVG source asset updated to match the dark mobile wallet deposit aesthetic from the provided references.</text>
 </svg>
