@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">WP Crypto Direct Gateway Shortcode Checkout</title>
+  <desc id="desc">Prepared source artwork showing the customer-facing shortcode payment form with QR code, wallet copy action, and countdown timer.</desc>
+  <defs>
+    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#07131e"/>
+      <stop offset="65%" stop-color="#102534"/>
+      <stop offset="100%" stop-color="#183142"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="#eef3f8"/>
+  <rect x="110" y="82" width="1380" height="836" rx="34" fill="url(#panel)"/>
+  <text x="168" y="146" font-size="20" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="3">DIRECT WALLET CHECKOUT</text>
+  <text x="168" y="208" font-size="52" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Pay with crypto</text>
+  <text x="168" y="248" font-size="24" font-family="Arial, sans-serif" fill="#d8e3ee">Generate a live quote, scan the QR code, and send funds directly to the merchant wallet.</text>
+  <rect x="168" y="308" width="520" height="470" rx="24" fill="#ffffff" fill-opacity="0.08" stroke="#315063"/>
+  <text x="202" y="356" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Your name</text>
+  <rect x="202" y="372" width="452" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
+  <text x="224" y="408" font-size="20" font-family="Arial, sans-serif" fill="#405463">Satoshi Merchant</text>
+  <text x="202" y="470" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Amount</text>
+  <rect x="202" y="486" width="212" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
+  <text x="224" y="522" font-size="20" font-family="Arial, sans-serif" fill="#405463">49.99</text>
+  <text x="442" y="470" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Currency</text>
+  <rect x="442" y="486" width="212" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
+  <text x="464" y="522" font-size="20" font-family="Arial, sans-serif" fill="#405463">USD</text>
+  <text x="202" y="584" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Asset and network</text>
+  <rect x="202" y="600" width="452" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
+  <text x="224" y="636" font-size="20" font-family="Arial, sans-serif" fill="#405463">USDT (TRC20)</text>
+  <rect x="202" y="698" width="452" height="58" rx="16" fill="#d6ff4b"/>
+  <text x="295" y="735" font-size="22" font-family="Arial, sans-serif" fill="#09131b" font-weight="700">Generate payment request</text>
+  <rect x="756" y="308" width="566" height="470" rx="24" fill="#ffffff" fill-opacity="0.08" stroke="#315063"/>
+  <rect x="804" y="362" width="248" height="248" rx="20" fill="#ffffff"/>
+  <path d="M840 398h50v50h-50zm172 0h-50v50h50zm-172 172h50v-50h-50zm172 0h-50v-50h50zm-126-126h24v24h-24zm38 0h24v24h-24zm0 38h24v24h-24zm38 38h24v24h-24zm-76 38h24v24h-24zm114-76h24v24h-24zm-76 76h24v24h-24z" fill="#10202c"/>
+  <text x="1094" y="394" font-size="16" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="2">PAYMENT REFERENCE</text>
+  <text x="1094" y="430" font-size="30" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">X4P7A2MT9Q1K</text>
+  <rect x="1094" y="452" width="144" height="38" rx="19" fill="#203749"/>
+  <text x="1130" y="478" font-size="16" font-family="Arial, sans-serif" fill="#ffd27d">Pending</text>
+  <text x="1094" y="534" font-size="22" font-family="Arial, sans-serif" fill="#ffffff">Send exactly</text>
+  <text x="1094" y="566" font-size="30" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">49.978412 USDT</text>
+  <text x="1094" y="618" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Wallet address</text>
+  <rect x="1094" y="636" width="190" height="42" rx="14" fill="#243d4d"/>
+  <text x="1129" y="663" font-size="16" font-family="Arial, sans-serif" fill="#f5ffca">Copy address</text>
+  <rect x="1094" y="692" width="150" height="42" rx="14" fill="#243d4d"/>
+  <text x="1128" y="719" font-size="16" font-family="Arial, sans-serif" fill="#f5ffca">Copy amount</text>
+  <text x="804" y="708" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Expires in 28:14</text>
+  <text x="804" y="742" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Address: TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL</text>
+  <text x="168" y="856" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Prepared SVG source asset for shortcode checkout marketing and documentation.</text>
+</svg>

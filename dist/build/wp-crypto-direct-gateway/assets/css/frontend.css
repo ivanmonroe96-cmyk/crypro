@@ -1,0 +1,272 @@
+.wcdg-payment-form {
+    display: grid;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.wcdg-card {
+    background:
+        radial-gradient(circle at top right, color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 22%, transparent), transparent 28%),
+        radial-gradient(circle at bottom left, color-mix(in srgb, var(--wcdg-secondary, #63b9ff) 18%, transparent), transparent 32%),
+        linear-gradient(155deg, #07131e, #102534 62%, #183142);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    box-shadow: 0 28px 80px rgba(7, 19, 30, 0.24);
+    color: #f4f6f8;
+    overflow: hidden;
+    padding: 1.75rem;
+    position: relative;
+}
+
+.wcdg-card h2 {
+    color: #f8fbfd;
+    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-size: 2rem;
+    margin: 0 0 0.75rem;
+}
+
+.wcdg-panel-header {
+    align-items: start;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+}
+
+.wcdg-kicker {
+    color: var(--wcdg-primary, #d6ff4b);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin: 0 0 0.5rem;
+    text-transform: uppercase;
+}
+
+.wcdg-logo {
+    display: block;
+    height: auto;
+    margin: 0 0 0.85rem;
+    max-height: 52px;
+    max-width: 180px;
+}
+
+.wcdg-brand-name {
+    color: rgba(244, 246, 248, 0.65);
+    font-size: 0.92rem;
+    font-weight: 600;
+    margin: -0.2rem 0 0.8rem;
+}
+
+.wcdg-trust-points {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    justify-content: end;
+    max-width: 360px;
+}
+
+.wcdg-trust-points span {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    color: color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 72%, #ffffff);
+    font-size: 0.78rem;
+    padding: 0.45rem 0.7rem;
+}
+
+.wcdg-card p,
+.wcdg-card label span {
+    color: rgba(244, 246, 248, 0.88);
+}
+
+.wcdg-form,
+.wcdg-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.wcdg-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.wcdg-card input,
+.wcdg-card select,
+.wcdg-card textarea,
+.wcdg-card button {
+    border: 0;
+    border-radius: 14px;
+    box-sizing: border-box;
+    font: inherit;
+    margin-top: 0.35rem;
+    padding: 0.85rem 1rem;
+    width: 100%;
+}
+
+.wcdg-card input,
+.wcdg-card select,
+.wcdg-card textarea {
+    background: rgba(255, 255, 255, 0.9);
+    color: #10202c;
+}
+
+.wcdg-card button {
+    background: linear-gradient(135deg, var(--wcdg-primary, #d6ff4b), color-mix(in srgb, var(--wcdg-secondary, #63b9ff) 32%, #74d993));
+    box-shadow: 0 12px 30px rgba(116, 217, 147, 0.24);
+    color: #0f1a20;
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.wcdg-card button:hover,
+.wcdg-card button:focus-visible,
+.wcdg-open-wallet:hover,
+.wcdg-open-wallet:focus-visible {
+    box-shadow: 0 18px 34px rgba(116, 217, 147, 0.3);
+    transform: translateY(-1px);
+}
+
+.wcdg-message {
+    color: var(--wcdg-primary, #d6ff4b);
+    font-weight: 600;
+    min-height: 1.5rem;
+}
+
+.wcdg-request-header {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.wcdg-request-meta {
+    align-items: end;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+}
+
+.wcdg-eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.wcdg-countdown {
+    color: rgba(244, 246, 248, 0.8);
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+
+.wcdg-status {
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+}
+
+.wcdg-status-pending,
+.wcdg-status-confirming {
+    background: rgba(255, 204, 102, 0.18);
+    color: #ffd27d;
+}
+
+.wcdg-status-paid {
+    background: color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 16%, transparent);
+    color: color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 58%, #ffffff);
+}
+
+.wcdg-status-expired,
+.wcdg-status-failed,
+.wcdg-status-cancelled {
+    background: rgba(255, 120, 120, 0.18);
+    color: #ff9696;
+}
+
+.wcdg-grid-request {
+    align-items: start;
+    grid-template-columns: minmax(220px, 280px) 1fr;
+}
+
+.wcdg-qr-wrap {
+    background: #fff;
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+.wcdg-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 1rem 0 1.1rem;
+}
+
+.wcdg-actions-row button,
+.wcdg-open-wallet {
+    width: auto;
+}
+
+.wcdg-open-wallet {
+    align-items: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    color: #f4f6f8;
+    display: inline-flex;
+    font-weight: 700;
+    justify-content: center;
+    margin-top: 0.35rem;
+    padding: 0.85rem 1rem;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.wcdg-woo-box {
+    margin: 2rem 0;
+}
+
+.wcdg-steps {
+    color: rgba(244, 246, 248, 0.84);
+    margin: 1rem 0 0;
+    padding-left: 1.25rem;
+}
+
+.wcdg-steps li + li {
+    margin-top: 0.45rem;
+}
+
+.wcdg-qr {
+    display: block;
+    height: auto;
+    max-width: 280px;
+    width: 100%;
+}
+
+@media (max-width: 640px) {
+    .wcdg-card {
+        border-radius: 18px;
+        padding: 1.2rem;
+    }
+
+    .wcdg-card h2 {
+        font-size: 1.55rem;
+    }
+
+    .wcdg-panel-header,
+    .wcdg-request-header {
+        flex-direction: column;
+    }
+
+    .wcdg-trust-points,
+    .wcdg-request-meta {
+        justify-content: start;
+        max-width: none;
+        width: 100%;
+    }
+
+    .wcdg-grid-request {
+        grid-template-columns: 1fr;
+    }
+}

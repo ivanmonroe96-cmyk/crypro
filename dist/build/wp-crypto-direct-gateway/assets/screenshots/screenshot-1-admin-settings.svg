@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">WP Crypto Direct Gateway Admin Settings</title>
+  <desc id="desc">Prepared source artwork showing the premium admin settings screen with branding, wallet controls, and packaging guidance.</desc>
+  <defs>
+    <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0c1a26"/>
+      <stop offset="60%" stop-color="#143246"/>
+      <stop offset="100%" stop-color="#1a4255"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="#f4f7fb"/>
+  <rect x="52" y="42" width="1496" height="190" rx="30" fill="url(#hero)"/>
+  <text x="90" y="96" font-size="18" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="3">PREMIUM CRYPTO CHECKOUT</text>
+  <text x="90" y="148" font-size="48" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">WP Crypto Direct Gateway</text>
+  <text x="90" y="192" font-size="24" font-family="Arial, sans-serif" fill="#d7e4ef">Wallets, branding, watcher controls, and release packaging in one admin workspace.</text>
+  <rect x="1170" y="86" width="150" height="42" rx="21" fill="#203749" stroke="#3d5362"/>
+  <text x="1200" y="113" font-size="18" font-family="Arial, sans-serif" fill="#f8ffcf">QR Ready</text>
+  <rect x="1334" y="86" width="160" height="42" rx="21" fill="#203749" stroke="#3d5362"/>
+  <text x="1363" y="113" font-size="18" font-family="Arial, sans-serif" fill="#f8ffcf">WooCommerce</text>
+  <rect x="52" y="264" width="980" height="676" rx="26" fill="#ffffff" stroke="#dbe4ee"/>
+  <rect x="1062" y="264" width="486" height="676" rx="26" fill="#ffffff" stroke="#dbe4ee"/>
+  <text x="92" y="320" font-size="34" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">Gateway Settings</text>
+  <text x="92" y="358" font-size="22" font-family="Arial, sans-serif" fill="#617282">Brand, payout wallets, confirmations, callback secret, and automatic watcher options.</text>
+  <g font-family="Arial, sans-serif">
+    <text x="92" y="430" font-size="18" fill="#10202c" font-weight="700">Merchant name</text>
+    <rect x="92" y="446" width="420" height="54" rx="12" fill="#f8fbfe" stroke="#dbe4ee"/>
+    <text x="114" y="481" font-size="20" fill="#405463">WP Crypto Direct Gateway</text>
+    <text x="548" y="430" font-size="18" fill="#10202c" font-weight="700">Primary color</text>
+    <rect x="548" y="446" width="220" height="54" rx="12" fill="#f8fbfe" stroke="#dbe4ee"/>
+    <circle cx="585" cy="473" r="16" fill="#d6ff4b"/>
+    <text x="614" y="481" font-size="20" fill="#405463">#D6FF4B</text>
+    <text x="92" y="558" font-size="18" fill="#10202c" font-weight="700">Wallet matrix</text>
+    <rect x="92" y="578" width="900" height="258" rx="18" fill="#fbfdff" stroke="#dbe4ee"/>
+    <rect x="92" y="578" width="900" height="54" rx="18" fill="#f7fafc"/>
+    <text x="116" y="612" font-size="16" fill="#617282" font-weight="700">SYMBOL</text>
+    <text x="258" y="612" font-size="16" fill="#617282" font-weight="700">NETWORK</text>
+    <text x="462" y="612" font-size="16" fill="#617282" font-weight="700">ADDRESS</text>
+    <text x="884" y="612" font-size="16" fill="#617282" font-weight="700">CONF</text>
+    <text x="116" y="684" font-size="20" fill="#10202c">BTC</text>
+    <text x="258" y="684" font-size="20" fill="#10202c">Bitcoin</text>
+    <text x="462" y="684" font-size="18" fill="#405463">bc1qev9qvwxennyypmth024...</text>
+    <text x="894" y="684" font-size="20" fill="#10202c">1</text>
+    <text x="116" y="744" font-size="20" fill="#10202c">USDT</text>
+    <text x="258" y="744" font-size="20" fill="#10202c">TRC20</text>
+    <text x="462" y="744" font-size="18" fill="#405463">TGkyrQigqKChK4KSfEjTdS...</text>
+    <text x="894" y="744" font-size="20" fill="#10202c">1</text>
+    <text x="116" y="804" font-size="20" fill="#10202c">ETH</text>
+    <text x="258" y="804" font-size="20" fill="#10202c">Ethereum</text>
+    <text x="462" y="804" font-size="18" fill="#405463">0x08CA715802e9B7Be5F21D...</text>
+    <text x="894" y="804" font-size="20" fill="#10202c">12</text>
+  </g>
+  <text x="1102" y="320" font-size="34" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">Release Checklist</text>
+  <text x="1102" y="358" font-size="22" font-family="Arial, sans-serif" fill="#617282">Branding, watcher support, packaging, and callback guidance.</text>
+  <rect x="1102" y="402" width="406" height="184" rx="18" fill="#f7fbff" stroke="#dbe4ee"/>
+  <text x="1130" y="446" font-size="20" font-family="Arial, sans-serif" fill="#10202c">• Review wallet confirmations</text>
+  <text x="1130" y="488" font-size="20" font-family="Arial, sans-serif" fill="#10202c">• Enable automatic watcher</text>
+  <text x="1130" y="530" font-size="20" font-family="Arial, sans-serif" fill="#10202c">• Set brand colors and logo</text>
+  <text x="1130" y="572" font-size="20" font-family="Arial, sans-serif" fill="#10202c">• Build release zip</text>
+  <rect x="1102" y="628" width="406" height="152" rx="18" fill="#eef5fb" stroke="#dbe4ee"/>
+  <text x="1130" y="672" font-size="18" font-family="Arial, sans-serif" fill="#617282">Packaging command</text>
+  <rect x="1130" y="694" width="352" height="48" rx="12" fill="#0f1f2b"/>
+  <text x="1160" y="724" font-size="20" font-family="Courier New, monospace" fill="#f4f6f8">./scripts/package-plugin.sh</text>
+  <text x="1102" y="860" font-size="18" font-family="Arial, sans-serif" fill="#617282">Prepared SVG source asset for marketing or listing export.</text>
+</svg>
