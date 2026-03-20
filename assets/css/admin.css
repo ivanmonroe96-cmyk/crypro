@@ -162,6 +162,21 @@
     min-height: 42px;
 }
 
+.wcdg-qr-upload-field {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.wcdg-qr-upload-field .regular-text {
+    flex: 1 1 auto;
+}
+
+.wcdg-qr-upload-field .button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
 .wcdg-admin-shell .button-primary {
     background: linear-gradient(135deg, var(--wcdg-admin-primary, #d6ff4b), color-mix(in srgb, var(--wcdg-admin-secondary, #63b9ff) 30%, #74d993));
     border: 0;
@@ -210,5 +225,10 @@
 
     .wcdg-admin-panel {
         padding: 18px;
+    }
+
+    .wcdg-qr-upload-field {
+        align-items: stretch;
+        flex-direction: column;
     }
 }

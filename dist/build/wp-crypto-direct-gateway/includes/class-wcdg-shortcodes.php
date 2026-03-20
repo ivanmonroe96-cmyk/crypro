@@ -96,6 +96,7 @@ class WCDG_Shortcodes
                             <p><strong><?php esc_html_e('Send exactly', 'wp-crypto-direct-gateway'); ?></strong> <span class="wcdg-crypto-amount"></span></p>
                             <p><strong><?php esc_html_e('Quote', 'wp-crypto-direct-gateway'); ?></strong> <span class="wcdg-fiat-amount"></span></p>
                             <p><strong><?php esc_html_e('Wallet', 'wp-crypto-direct-gateway'); ?></strong> <span class="wcdg-wallet-label"></span></p>
+                            <p class="wcdg-qr-mode-note"></p>
                             <p><strong><?php esc_html_e('Address', 'wp-crypto-direct-gateway'); ?></strong></p>
                             <textarea class="wcdg-address" readonly rows="3"></textarea>
                             <div class="wcdg-actions-row">

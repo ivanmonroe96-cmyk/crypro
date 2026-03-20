@@ -1,48 +1,56 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
-  <title id="title">WP Crypto Direct Gateway Shortcode Checkout</title>
-  <desc id="desc">Prepared source artwork showing the customer-facing shortcode payment form with QR code, wallet copy action, and countdown timer.</desc>
+  <title id="title">WP Crypto Direct Gateway Shortcode Deposit Screen</title>
+  <desc id="desc">Prepared source artwork styled like a dark mobile crypto wallet deposit screen, showing a live Bitcoin payment request generated from the shortcode flow.</desc>
   <defs>
-    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#07131e"/>
-      <stop offset="65%" stop-color="#102534"/>
-      <stop offset="100%" stop-color="#183142"/>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f4f6fb"/>
+      <stop offset="100%" stop-color="#e6ecf5"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#121d2a"/>
+      <stop offset="100%" stop-color="#0b141f"/>
+    </linearGradient>
+    <linearGradient id="hero" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#17283a"/>
+      <stop offset="100%" stop-color="#0e1621"/>
     </linearGradient>
   </defs>
-  <rect width="1600" height="1000" fill="#eef3f8"/>
-  <rect x="110" y="82" width="1380" height="836" rx="34" fill="url(#panel)"/>
-  <text x="168" y="146" font-size="20" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="3">DIRECT WALLET CHECKOUT</text>
-  <text x="168" y="208" font-size="52" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Pay with crypto</text>
-  <text x="168" y="248" font-size="24" font-family="Arial, sans-serif" fill="#d8e3ee">Generate a live quote, scan the QR code, and send funds directly to the merchant wallet.</text>
-  <rect x="168" y="308" width="520" height="470" rx="24" fill="#ffffff" fill-opacity="0.08" stroke="#315063"/>
-  <text x="202" y="356" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Your name</text>
-  <rect x="202" y="372" width="452" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
-  <text x="224" y="408" font-size="20" font-family="Arial, sans-serif" fill="#405463">Satoshi Merchant</text>
-  <text x="202" y="470" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Amount</text>
-  <rect x="202" y="486" width="212" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
-  <text x="224" y="522" font-size="20" font-family="Arial, sans-serif" fill="#405463">49.99</text>
-  <text x="442" y="470" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Currency</text>
-  <rect x="442" y="486" width="212" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
-  <text x="464" y="522" font-size="20" font-family="Arial, sans-serif" fill="#405463">USD</text>
-  <text x="202" y="584" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Asset and network</text>
-  <rect x="202" y="600" width="452" height="56" rx="14" fill="#ffffff" fill-opacity="0.92"/>
-  <text x="224" y="636" font-size="20" font-family="Arial, sans-serif" fill="#405463">USDT (TRC20)</text>
-  <rect x="202" y="698" width="452" height="58" rx="16" fill="#d6ff4b"/>
-  <text x="295" y="735" font-size="22" font-family="Arial, sans-serif" fill="#09131b" font-weight="700">Generate payment request</text>
-  <rect x="756" y="308" width="566" height="470" rx="24" fill="#ffffff" fill-opacity="0.08" stroke="#315063"/>
-  <rect x="804" y="362" width="248" height="248" rx="20" fill="#ffffff"/>
-  <path d="M840 398h50v50h-50zm172 0h-50v50h50zm-172 172h50v-50h-50zm172 0h-50v-50h50zm-126-126h24v24h-24zm38 0h24v24h-24zm0 38h24v24h-24zm38 38h24v24h-24zm-76 38h24v24h-24zm114-76h24v24h-24zm-76 76h24v24h-24z" fill="#10202c"/>
-  <text x="1094" y="394" font-size="16" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="2">PAYMENT REFERENCE</text>
-  <text x="1094" y="430" font-size="30" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">X4P7A2MT9Q1K</text>
-  <rect x="1094" y="452" width="144" height="38" rx="19" fill="#203749"/>
-  <text x="1130" y="478" font-size="16" font-family="Arial, sans-serif" fill="#ffd27d">Pending</text>
-  <text x="1094" y="534" font-size="22" font-family="Arial, sans-serif" fill="#ffffff">Send exactly</text>
-  <text x="1094" y="566" font-size="30" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">49.978412 USDT</text>
-  <text x="1094" y="618" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Wallet address</text>
-  <rect x="1094" y="636" width="190" height="42" rx="14" fill="#243d4d"/>
-  <text x="1129" y="663" font-size="16" font-family="Arial, sans-serif" fill="#f5ffca">Copy address</text>
-  <rect x="1094" y="692" width="150" height="42" rx="14" fill="#243d4d"/>
-  <text x="1128" y="719" font-size="16" font-family="Arial, sans-serif" fill="#f5ffca">Copy amount</text>
-  <text x="804" y="708" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Expires in 28:14</text>
-  <text x="804" y="742" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Address: TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL</text>
-  <text x="168" y="856" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Prepared SVG source asset for shortcode checkout marketing and documentation.</text>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <text x="120" y="128" font-size="20" font-family="Arial, sans-serif" fill="#6e7b8d" letter-spacing="3">SHORTCODE CHECKOUT</text>
+  <text x="120" y="190" font-size="58" font-family="Arial, sans-serif" fill="#0f1722" font-weight="700">Wallet-style live QR deposit flow</text>
+  <text x="120" y="234" font-size="24" font-family="Arial, sans-serif" fill="#667487">Dynamic amount-aware QR remains the default, with an optional static QR fallback per wallet.</text>
+  <rect x="860" y="70" width="420" height="860" rx="48" fill="url(#phone)"/>
+  <rect x="880" y="96" width="380" height="808" rx="38" fill="#0a1119" stroke="#1d2c3c"/>
+  <rect x="1032" y="112" width="76" height="10" rx="5" fill="#25364a"/>
+  <text x="920" y="170" font-size="18" font-family="Arial, sans-serif" fill="#7f94a8">09:41</text>
+  <text x="1018" y="170" font-size="18" font-family="Arial, sans-serif" fill="#7f94a8">BTC Wallet</text>
+  <circle cx="1200" cy="164" r="8" fill="#f3b340"/>
+  <rect x="912" y="206" width="316" height="74" rx="24" fill="url(#hero)" stroke="#24384b"/>
+  <text x="944" y="242" font-size="20" font-family="Arial, sans-serif" fill="#9bb1c5">Network</text>
+  <text x="944" y="266" font-size="28" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Bitcoin</text>
+  <text x="1118" y="242" font-size="18" font-family="Arial, sans-serif" fill="#9bb1c5">Send exactly</text>
+  <text x="1118" y="266" font-size="24" font-family="Arial, sans-serif" fill="#ffd27d" font-weight="700">0.00084213 BTC</text>
+  <rect x="954" y="318" width="232" height="232" rx="22" fill="#ffffff"/>
+  <path d="M986 350h44v44h-44zm124 0h44v44h-44zm-124 124h44v-44h-44zm124 0h-44v-44h44zm-88-88h18v18h-18zm28 0h18v18h-18zm0 28h18v18h-18zm28 28h18v18h-18zm-56 28h18v18h-18zm84-56h18v18h-18zm-56 56h18v18h-18zm84 28h18v18h-18zm-28-56h18v18h-18z" fill="#0f1722"/>
+  <text x="920" y="592" font-size="24" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2</text>
+  <text x="920" y="628" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Generated payment URI, live quote, and copy actions from the shortcode request.</text>
+  <rect x="920" y="664" width="146" height="52" rx="18" fill="#192737"/>
+  <rect x="1082" y="664" width="146" height="52" rx="18" fill="#192737"/>
+  <text x="959" y="697" font-size="18" font-family="Arial, sans-serif" fill="#f4f7fb">Copy wallet</text>
+  <text x="1121" y="697" font-size="18" font-family="Arial, sans-serif" fill="#f4f7fb">Copy amount</text>
+  <rect x="920" y="744" width="308" height="108" rx="24" fill="#101b27" stroke="#24384b"/>
+  <text x="948" y="782" font-size="16" font-family="Arial, sans-serif" fill="#7f94a8" letter-spacing="2">PAYMENT STATUS</text>
+  <text x="948" y="816" font-size="34" font-family="Arial, sans-serif" fill="#ffd27d" font-weight="700">Awaiting confirmation</text>
+  <text x="948" y="844" font-size="18" font-family="Arial, sans-serif" fill="#9bb1c5">Reference B2C9-4Q7M • Expires in 28:14</text>
+  <rect x="120" y="314" width="620" height="432" rx="30" fill="#ffffff" stroke="#d7dfeb"/>
+  <text x="166" y="370" font-size="18" font-family="Arial, sans-serif" fill="#6e7b8d" letter-spacing="2">PLUGIN SETTINGS</text>
+  <text x="166" y="420" font-size="38" font-family="Arial, sans-serif" fill="#0f1722" font-weight="700">Per-wallet QR mode</text>
+  <text x="166" y="460" font-size="21" font-family="Arial, sans-serif" fill="#667487">Merchants can keep live QR generation or upload a wallet app screenshot for any address.</text>
+  <rect x="166" y="502" width="528" height="76" rx="22" fill="#f5f8fc" stroke="#d7dfeb"/>
+  <text x="194" y="536" font-size="17" font-family="Arial, sans-serif" fill="#667487">BTC / Bitcoin / uid: btc-bitcoin</text>
+  <text x="194" y="564" font-size="24" font-family="Arial, sans-serif" fill="#0f1722" font-weight="700">QR Mode: Dynamic</text>
+  <rect x="166" y="604" width="528" height="76" rx="22" fill="#f5f8fc" stroke="#d7dfeb"/>
+  <text x="194" y="638" font-size="17" font-family="Arial, sans-serif" fill="#667487">Optional static QR image URL</text>
+  <text x="194" y="666" font-size="22" font-family="Arial, sans-serif" fill="#0f1722">/assets/wallet-qr/btc-wallet.png</text>
+  <text x="120" y="844" font-size="18" font-family="Arial, sans-serif" fill="#667487">Prepared SVG source asset updated to match the dark mobile wallet deposit aesthetic from the provided references.</text>
 </svg>

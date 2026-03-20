@@ -90,11 +90,13 @@ class WCDG_WooCommerce_Gateway
             return;
         }
 
+        $wallet = WCDG_Crypto::get_wallet_for_record($record);
         $settings = WCDG_Settings::get_settings();
-        $qr_url = add_query_arg(array(
+        $dynamic_qr_url = add_query_arg(array(
             'text' => $record['payment_uri'],
             'size' => 220,
         ), 'https://quickchart.io/qr');
+        $qr_url = ($wallet && ($wallet['qr_display_mode'] ?? 'dynamic') === 'static' && ! empty($wallet['static_qr_url'])) ? esc_url($wallet['static_qr_url']) : $dynamic_qr_url;
         $logo = ! empty($settings['brand_logo_url']) ? '<img src="' . esc_url($settings['brand_logo_url']) . '" alt="' . esc_attr($settings['merchant_name']) . '" style="display:block; max-width:160px; max-height:52px; height:auto; margin:0 0 14px;" />' : '';
 
         echo '<div style="margin:24px 0; border:1px solid #d8e3ee; border-radius:24px; overflow:hidden; background:#ffffff;">';
@@ -123,10 +125,12 @@ class WCDG_WooCommerce_Gateway
     private function render_live_payment_panel(array $record, int $order_id): void
     {
         $settings = WCDG_Settings::get_settings();
-        $qr_url = add_query_arg(array(
+        $wallet = WCDG_Crypto::get_wallet_for_record($record);
+        $dynamic_qr_url = add_query_arg(array(
             'text' => $record['payment_uri'],
             'size' => 280,
         ), 'https://quickchart.io/qr');
+        $qr_url = ($wallet && ($wallet['qr_display_mode'] ?? 'dynamic') === 'static' && ! empty($wallet['static_qr_url'])) ? esc_url($wallet['static_qr_url']) : $dynamic_qr_url;
 
         echo '<section class="wcdg-payment-form wcdg-woo-box wcdg-live-payment" data-reference="' . esc_attr($record['reference']) . '">';
         echo '<div class="wcdg-payment-request">';

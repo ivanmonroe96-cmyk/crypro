@@ -1,48 +1,53 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
-  <title id="title">WP Crypto Direct Gateway WooCommerce Payment Panel</title>
-  <desc id="desc">Prepared source artwork showing the WooCommerce order-received payment panel and branded email-style instruction layout.</desc>
+  <title id="title">WP Crypto Direct Gateway WooCommerce Multi-Network Payment Views</title>
+  <desc id="desc">Prepared source artwork showing WooCommerce payment instructions styled like dark mobile wallet receive screens for ETH, USDT on Ethereum, and USDT on Tron.</desc>
   <defs>
-    <linearGradient id="panel" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0%" stop-color="#0f1f2b"/>
-      <stop offset="60%" stop-color="#13293a"/>
-      <stop offset="100%" stop-color="#183548"/>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#eff3f8"/>
+      <stop offset="100%" stop-color="#e4eaf2"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#121d2a"/>
+      <stop offset="100%" stop-color="#0b141f"/>
     </linearGradient>
   </defs>
-  <rect width="1600" height="1000" fill="#f3f6fa"/>
-  <rect x="90" y="86" width="1420" height="178" rx="30" fill="url(#panel)"/>
-  <text x="136" y="142" font-size="18" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="3">ORDER RECEIVED</text>
-  <text x="136" y="198" font-size="50" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Complete your crypto payment</text>
-  <text x="136" y="238" font-size="24" font-family="Arial, sans-serif" fill="#d8e3ee">WooCommerce thank-you page and email-ready payment instructions with live chain watcher status.</text>
-  <rect x="90" y="300" width="820" height="610" rx="28" fill="#ffffff" stroke="#dbe4ee"/>
-  <rect x="948" y="300" width="562" height="610" rx="28" fill="#ffffff" stroke="#dbe4ee"/>
-  <text x="136" y="360" font-size="34" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">WooCommerce payment panel</text>
-  <text x="136" y="400" font-size="22" font-family="Arial, sans-serif" fill="#617282">Customer sees the same QR, wallet, and amount on the order-received page.</text>
-  <rect x="136" y="440" width="280" height="280" rx="22" fill="#ffffff" stroke="#dbe4ee"/>
-  <path d="M176 480h56v56h-56zm144 0h56v56h-56zm-144 144h56v-56h-56zm144 0h-56v-56h56zm-102-102h22v22h-22zm36 0h22v22h-22zm0 36h22v22h-22zm36 36h22v22h-22zm-72 36h22v22h-22zm108-72h22v22h-22zm-72 72h22v22h-22z" fill="#10202c"/>
-  <text x="460" y="486" font-size="18" font-family="Arial, sans-serif" fill="#617282">Reference</text>
-  <text x="460" y="522" font-size="30" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">WCDG-ORDER-1084</text>
-  <rect x="460" y="546" width="140" height="38" rx="19" fill="#ecf8ef"/>
-  <text x="496" y="572" font-size="16" font-family="Arial, sans-serif" fill="#1f7a3d">Confirming</text>
-  <text x="460" y="628" font-size="18" font-family="Arial, sans-serif" fill="#617282">Amount</text>
-  <text x="460" y="662" font-size="30" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">0.018745 ETH</text>
-  <text x="460" y="720" font-size="18" font-family="Arial, sans-serif" fill="#617282">Wallet address</text>
-  <rect x="460" y="738" width="370" height="74" rx="16" fill="#f6f9fc" stroke="#dbe4ee"/>
-  <text x="484" y="780" font-size="18" font-family="Courier New, monospace" fill="#405463">0x08CA715802e9B7Be5F21D8e3...</text>
-  <rect x="460" y="832" width="170" height="46" rx="15" fill="#0f1f2b"/>
-  <text x="501" y="862" font-size="18" font-family="Arial, sans-serif" fill="#f4f6f8">Copy wallet</text>
-  <text x="988" y="360" font-size="34" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">WooCommerce email block</text>
-  <text x="988" y="400" font-size="22" font-family="Arial, sans-serif" fill="#617282">Styled payment instructions embedded in on-hold order emails.</text>
-  <rect x="988" y="438" width="484" height="366" rx="22" fill="url(#panel)"/>
-  <text x="1028" y="490" font-size="16" font-family="Arial, sans-serif" fill="#d6ff4b" letter-spacing="2">WP CRYPTO DIRECT GATEWAY</text>
-  <text x="1028" y="536" font-size="34" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Complete your crypto payment</text>
-  <text x="1028" y="580" font-size="20" font-family="Arial, sans-serif" fill="#d8e3ee">Scan the QR code or use the wallet address below.</text>
-  <rect x="1028" y="620" width="164" height="164" rx="18" fill="#ffffff"/>
-  <path d="M1060 652h34v34h-34zm98 0h34v34h-34zm-98 98h34v-34h-34zm98 0h-34v-34h34zm-68-68h16v16h-16zm26 0h16v16h-16zm0 26h16v16h-16zm26 26h16v16h-16z" fill="#10202c"/>
-  <text x="1226" y="650" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Amount</text>
-  <text x="1226" y="682" font-size="28" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">49.978412 USDT</text>
-  <text x="1226" y="730" font-size="18" font-family="Arial, sans-serif" fill="#d8e3ee">Network</text>
-  <text x="1226" y="762" font-size="24" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">USDT - TRC20</text>
-  <rect x="988" y="834" width="484" height="46" rx="14" fill="#f6f9fc" stroke="#dbe4ee"/>
-  <text x="1012" y="863" font-size="17" font-family="Courier New, monospace" fill="#405463">TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL</text>
-  <text x="90" y="958" font-size="18" font-family="Arial, sans-serif" fill="#617282">Prepared SVG source asset for WooCommerce listing screenshots and release collateral.</text>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <text x="100" y="118" font-size="20" font-family="Arial, sans-serif" fill="#6e7b8d" letter-spacing="3">WOOCOMMERCE PAYMENT EXPERIENCES</text>
+  <text x="100" y="178" font-size="56" font-family="Arial, sans-serif" fill="#101923" font-weight="700">Thank-you page and email views mirror wallet receive screens</text>
+  <text x="100" y="220" font-size="24" font-family="Arial, sans-serif" fill="#667487">Three branded deposit states show how ETH, USDT ERC20, and USDT TRC20 instructions appear after checkout.</text>
+
+  <rect x="110" y="286" width="398" height="610" rx="44" fill="url(#phone)"/>
+  <rect x="128" y="308" width="362" height="566" rx="34" fill="#0a1119" stroke="#1d2c3c"/>
+  <text x="166" y="356" font-size="18" font-family="Arial, sans-serif" fill="#7f94a8">ETH Payment</text>
+  <text x="166" y="394" font-size="32" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Order #1084</text>
+  <rect x="182" y="430" width="254" height="254" rx="22" fill="#ffffff"/>
+  <path d="M214 462h46v46h-46zm130 0h46v46h-46zm-130 130h46v-46h-46zm130 0h-46v-46h46zm-92-92h18v18h-18zm28 0h18v18h-18zm0 28h18v18h-18zm28 28h18v18h-18zm-56 28h18v18h-18zm84-56h18v18h-18zm-56 56h18v18h-18z" fill="#0f1722"/>
+  <text x="166" y="734" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Send exactly</text>
+  <text x="166" y="768" font-size="34" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">0.018745 ETH</text>
+  <text x="166" y="808" font-size="17" font-family="Arial, sans-serif" fill="#7f94a8">0x08CA715802e9B7Be5F21D8e3fDcb44a0c44Fe23A</text>
+
+  <rect x="600" y="246" width="398" height="650" rx="44" fill="url(#phone)"/>
+  <rect x="618" y="268" width="362" height="606" rx="34" fill="#0a1119" stroke="#1d2c3c"/>
+  <text x="656" y="316" font-size="18" font-family="Arial, sans-serif" fill="#7f94a8">USDT Ethereum</text>
+  <text x="656" y="354" font-size="32" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">On-hold email block</text>
+  <rect x="672" y="390" width="254" height="254" rx="22" fill="#ffffff"/>
+  <path d="M704 422h46v46h-46zm130 0h46v46h-46zm-130 130h46v-46h-46zm130 0h-46v-46h46zm-92-92h18v18h-18zm28 0h18v18h-18zm0 28h18v18h-18zm28 28h18v18h-18zm-56 28h18v18h-18zm84-56h18v18h-18zm-56 56h18v18h-18z" fill="#0f1722"/>
+  <rect x="656" y="684" width="162" height="40" rx="20" fill="#1a7f6a"/>
+  <text x="703" y="710" font-size="16" font-family="Arial, sans-serif" fill="#eafffb">Paid</text>
+  <text x="656" y="764" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Amount</text>
+  <text x="656" y="798" font-size="34" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">49.978412 USDT</text>
+  <text x="656" y="836" font-size="17" font-family="Arial, sans-serif" fill="#7f94a8">0x08CA715802e9B7Be5F21D8e3fDcb44a0c44Fe23A</text>
+
+  <rect x="1090" y="286" width="398" height="610" rx="44" fill="url(#phone)"/>
+  <rect x="1108" y="308" width="362" height="566" rx="34" fill="#0a1119" stroke="#1d2c3c"/>
+  <text x="1146" y="356" font-size="18" font-family="Arial, sans-serif" fill="#7f94a8">USDT Tron</text>
+  <text x="1146" y="394" font-size="32" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Thank-you page panel</text>
+  <rect x="1162" y="430" width="254" height="254" rx="22" fill="#ffffff"/>
+  <path d="M1194 462h46v46h-46zm130 0h46v46h-46zm-130 130h46v-46h-46zm130 0h-46v-46h46zm-92-92h18v18h-18zm28 0h18v18h-18zm0 28h18v18h-18zm28 28h18v18h-18zm-56 28h18v18h-18zm84-56h18v18h-18zm-56 56h18v18h-18z" fill="#0f1722"/>
+  <rect x="1146" y="724" width="186" height="40" rx="20" fill="#46331b"/>
+  <text x="1191" y="750" font-size="16" font-family="Arial, sans-serif" fill="#ffd27d">Awaiting payment</text>
+  <text x="1146" y="804" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Wallet</text>
+  <text x="1146" y="838" font-size="17" font-family="Arial, sans-serif" fill="#7f94a8">TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL</text>
+
+  <text x="100" y="954" font-size="18" font-family="Arial, sans-serif" fill="#667487">Prepared SVG source asset updated to align WooCommerce screenshots with the dark wallet QR references while keeping the plugin’s live-chain status context.</text>
 </svg>

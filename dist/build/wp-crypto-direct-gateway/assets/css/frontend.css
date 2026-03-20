@@ -196,6 +196,13 @@
     padding: 1rem;
 }
 
+.wcdg-qr-mode-note {
+    color: rgba(244, 246, 248, 0.7);
+    font-size: 0.86rem;
+    line-height: 1.45;
+    margin: 0.75rem 0 0;
+}
+
 .wcdg-actions-row {
     display: flex;
     flex-wrap: wrap;

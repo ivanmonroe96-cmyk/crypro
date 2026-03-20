@@ -46,6 +46,7 @@
 
     const updatePaymentBox = (container, payment) => {
         const requestWrap = container.querySelector('.wcdg-payment-request');
+        const qrModeNote = container.querySelector('.wcdg-qr-mode-note');
         if (requestWrap && 'hidden' in requestWrap) {
             requestWrap.hidden = false;
         }
@@ -60,6 +61,11 @@
         container.querySelector('.wcdg-address').value = payment.wallet_address;
         container.querySelector('.wcdg-expires-at').textContent = payment.expires_at || '';
         container.querySelector('.wcdg-open-wallet').href = payment.payment_uri || '#';
+        if (qrModeNote) {
+            qrModeNote.textContent = payment.dynamic_payment_qr_url && payment.payment_qr_url !== payment.dynamic_payment_qr_url
+                ? wcdgConfig.strings.qrStatic
+                : wcdgConfig.strings.qrDynamic;
+        }
         if (requestWrap) {
             requestWrap.dataset.reference = payment.reference;
             requestWrap.dataset.amount = payment.crypto_amount;

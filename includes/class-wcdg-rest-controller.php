@@ -149,7 +149,8 @@ class WCDG_REST_Controller
             'wallet_address' => $record['wallet_address'],
             'wallet_network' => $record['wallet_network'],
             'payment_uri' => $record['payment_uri'],
-            'payment_qr_url' => $this->get_qr_url($record['payment_uri'], (string) $settings['qr_provider']),
+            'payment_qr_url' => $this->get_payment_qr_url($record, $settings),
+            'dynamic_payment_qr_url' => $this->get_qr_url($record['payment_uri'], (string) $settings['qr_provider']),
             'tx_hash' => $record['tx_hash'],
             'confirmations' => (int) $record['confirmations'],
             'required_confirmations' => (int) $record['required_confirmations'],
@@ -169,5 +170,17 @@ class WCDG_REST_Controller
         }
 
         return '';
+    }
+
+    private function get_payment_qr_url(array $record, array $settings): string
+    {
+        $wallet_uid = sanitize_key((string) ($record['meta']['wallet_uid'] ?? ''));
+        $wallet = $wallet_uid !== '' ? WCDG_Settings::find_wallet_by_uid($wallet_uid) : WCDG_Settings::find_wallet_by_symbol_and_network((string) $record['crypto_currency'], (string) $record['wallet_network']);
+
+        if ($wallet && ($wallet['qr_display_mode'] ?? 'dynamic') === 'static' && ! empty($wallet['static_qr_url'])) {
+            return esc_url_raw((string) $wallet['static_qr_url']);
+        }
+
+        return $this->get_qr_url($record['payment_uri'], (string) $settings['qr_provider']);
     }
 }

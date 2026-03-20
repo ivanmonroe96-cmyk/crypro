@@ -75,6 +75,8 @@ class WCDG_Plugin
                 'copySuccess' => __('Wallet address copied.', 'wp-crypto-direct-gateway'),
                 'copyAmountSuccess' => __('Crypto amount copied.', 'wp-crypto-direct-gateway'),
                 'paid' => __('Payment confirmed on-chain.', 'wp-crypto-direct-gateway'),
+                'qrDynamic' => __('Live QR with amount and wallet details.', 'wp-crypto-direct-gateway'),
+                'qrStatic' => __('Showing uploaded wallet QR image. Double-check the exact amount before sending.', 'wp-crypto-direct-gateway'),
             ),
         ));
 
@@ -92,6 +94,7 @@ class WCDG_Plugin
             return;
         }
 
+        wp_enqueue_media();
         wp_register_style('wcdg-admin', WCDG_PLUGIN_URL . 'assets/css/admin.css', array(), WCDG_VERSION);
 
         $settings = WCDG_Settings::get_settings();
