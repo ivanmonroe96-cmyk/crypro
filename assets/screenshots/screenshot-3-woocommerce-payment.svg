@@ -25,6 +25,7 @@
   <text x="166" y="734" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Send exactly</text>
   <text x="166" y="768" font-size="34" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">0.018745 ETH</text>
   <text x="166" y="808" font-size="17" font-family="Arial, sans-serif" fill="#7f94a8">0x08CA715802e9B7Be5F21D8e3fDcb44a0c44Fe23A</text>
+  <text x="166" y="840" font-size="15" font-family="Arial, sans-serif" fill="#6e8297">Static QR: /assets/wallet-qr/eth-wallet.jpeg</text>
 
   <rect x="600" y="246" width="398" height="650" rx="44" fill="url(#phone)"/>
   <rect x="618" y="268" width="362" height="606" rx="34" fill="#0a1119" stroke="#1d2c3c"/>
@@ -37,6 +38,7 @@
   <text x="656" y="764" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Amount</text>
   <text x="656" y="798" font-size="34" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">49.978412 USDT</text>
   <text x="656" y="836" font-size="17" font-family="Arial, sans-serif" fill="#7f94a8">0x08CA715802e9B7Be5F21D8e3fDcb44a0c44Fe23A</text>
+  <text x="656" y="864" font-size="15" font-family="Arial, sans-serif" fill="#6e8297">Static QR: /assets/wallet-qr/usdt-erc20-wallet.jpeg</text>
 
   <rect x="1090" y="286" width="398" height="610" rx="44" fill="url(#phone)"/>
   <rect x="1108" y="308" width="362" height="566" rx="34" fill="#0a1119" stroke="#1d2c3c"/>
@@ -48,6 +50,7 @@
   <text x="1191" y="750" font-size="16" font-family="Arial, sans-serif" fill="#ffd27d">Awaiting payment</text>
   <text x="1146" y="804" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Wallet</text>
   <text x="1146" y="838" font-size="17" font-family="Arial, sans-serif" fill="#7f94a8">TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL</text>
+  <text x="1146" y="866" font-size="15" font-family="Arial, sans-serif" fill="#6e8297">Static QR: /assets/wallet-qr/usdt-trc20-wallet.jpeg</text>
 
   <text x="100" y="954" font-size="18" font-family="Arial, sans-serif" fill="#667487">Prepared SVG source asset updated to align WooCommerce screenshots with the dark wallet QR references while keeping the plugin’s live-chain status context.</text>
 </svg>
