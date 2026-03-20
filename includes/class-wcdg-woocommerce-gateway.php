@@ -22,6 +22,20 @@ class WCDG_WooCommerce_Gateway
         add_filter('woocommerce_payment_gateways', array($this, 'register_gateway'));
         add_action('woocommerce_thankyou_wcdg_direct', array($this, 'render_order_payment_box'));
         add_action('woocommerce_email_after_order_table', array($this, 'render_email_payment_instructions'), 10, 4);
+        add_filter('woocommerce_thankyou_order_received_text', array($this, 'filter_order_received_text'), 10, 2);
+    }
+
+    public function filter_order_received_text(string $text, $order): string
+    {
+        if (! $order instanceof WC_Order || $order->get_payment_method() !== 'wcdg_direct') {
+            return $text;
+        }
+
+        if ($order->is_paid()) {
+            return __('Your crypto payment has been confirmed. Thank you for your order!', 'wp-crypto-direct-gateway');
+        }
+
+        return __('Complete your crypto payment below. Your order will be confirmed once the payment receives sufficient blockchain confirmations.', 'wp-crypto-direct-gateway');
     }
 
     public function register_gateway_class(): void
@@ -90,13 +104,11 @@ class WCDG_WooCommerce_Gateway
             return;
         }
 
-        $wallet = WCDG_Crypto::get_wallet_for_record($record);
         $settings = WCDG_Settings::get_settings();
-        $dynamic_qr_url = add_query_arg(array(
+        $qr_url = add_query_arg(array(
             'text' => $record['payment_uri'],
             'size' => 220,
         ), 'https://quickchart.io/qr');
-        $qr_url = ($wallet && ($wallet['qr_display_mode'] ?? 'dynamic') === 'static' && ! empty($wallet['static_qr_url'])) ? esc_url($wallet['static_qr_url']) : $dynamic_qr_url;
         $logo = ! empty($settings['brand_logo_url']) ? '<img src="' . esc_url($settings['brand_logo_url']) . '" alt="' . esc_attr($settings['merchant_name']) . '" style="display:block; max-width:160px; max-height:52px; height:auto; margin:0 0 14px;" />' : '';
 
         echo '<div style="margin:24px 0; border:1px solid #d8e3ee; border-radius:24px; overflow:hidden; background:#ffffff;">';
@@ -124,36 +136,66 @@ class WCDG_WooCommerce_Gateway
 
     private function render_live_payment_panel(array $record, int $order_id): void
     {
-        $settings = WCDG_Settings::get_settings();
-        $wallet = WCDG_Crypto::get_wallet_for_record($record);
-        $dynamic_qr_url = add_query_arg(array(
+        $qr_url = add_query_arg(array(
             'text' => $record['payment_uri'],
             'size' => 280,
         ), 'https://quickchart.io/qr');
-        $qr_url = ($wallet && ($wallet['qr_display_mode'] ?? 'dynamic') === 'static' && ! empty($wallet['static_qr_url'])) ? esc_url($wallet['static_qr_url']) : $dynamic_qr_url;
+        $status = esc_attr($record['status']);
+        $confirmations = (int) ($record['confirmations'] ?? 0);
+        $required = (int) ($record['required_confirmations'] ?? 1);
 
-        echo '<section class="wcdg-payment-form wcdg-woo-box wcdg-live-payment" data-reference="' . esc_attr($record['reference']) . '">';
+        echo '<section class="wcdg-payment-form wcdg-woo-box wcdg-live-payment" data-reference="' . esc_attr($record['reference']) . '" data-status="' . $status . '">';
         echo '<div class="wcdg-payment-request">';
         echo '<div class="wcdg-card">';
-        echo '<div class="wcdg-panel-header">';
-        echo '<div>';
-        echo '<p class="wcdg-kicker">' . esc_html($settings['merchant_name']) . '</p>';
-        echo '<h2>' . esc_html__('Complete your crypto payment', 'wp-crypto-direct-gateway') . '</h2>';
+
+        // Header
+        echo '<div class="wcdg-pay-header">';
+        echo '<span class="wcdg-status wcdg-status-' . $status . '">' . esc_html(ucfirst($record['status'])) . '</span>';
+        echo '<span class="wcdg-countdown"></span>';
         echo '</div>';
-        echo '<div class="wcdg-trust-points"><span>' . esc_html__('Live chain watcher', 'wp-crypto-direct-gateway') . '</span><span>' . esc_html__('QR-ready', 'wp-crypto-direct-gateway') . '</span><span>' . esc_html__('Order #' . $order_id) . '</span></div>';
+
+        // Body
+        echo '<div class="wcdg-pay-body">';
+        echo '<div class="wcdg-pay-qr"><div class="wcdg-qr-frame"><img src="' . esc_url($qr_url) . '" alt="' . esc_attr__('Payment QR code', 'wp-crypto-direct-gateway') . '" class="wcdg-qr" /></div></div>';
+        echo '<div class="wcdg-pay-amount">';
+        echo '<div class="wcdg-pay-amount-label">' . esc_html__('Send exactly', 'wp-crypto-direct-gateway') . '</div>';
+        echo '<span class="wcdg-crypto-amount">' . esc_html($record['crypto_amount'] . ' ' . $record['crypto_currency']) . '</span>';
+        echo '<span class="wcdg-fiat-amount">\u2248 ' . esc_html(number_format((float) $record['fiat_amount'], 2) . ' ' . $record['fiat_currency']) . '</span>';
         echo '</div>';
-        echo '<p>' . esc_html__('Scan the QR code, copy the wallet address if needed, and keep this page open while the status updates automatically.', 'wp-crypto-direct-gateway') . '</p>';
-        echo '<div class="wcdg-request-header"><div><p class="wcdg-eyebrow">' . esc_html__('Payment reference', 'wp-crypto-direct-gateway') . '</p><strong class="wcdg-reference">' . esc_html($record['reference']) . '</strong></div><div class="wcdg-request-meta"><span class="wcdg-status wcdg-status-' . esc_attr($record['status']) . '">' . esc_html(ucfirst($record['status'])) . '</span><span class="wcdg-countdown"></span></div></div>';
-        echo '<div class="wcdg-grid wcdg-grid-request"><div class="wcdg-qr-wrap"><img src="' . esc_url($qr_url) . '" alt="' . esc_attr__('Crypto payment QR code', 'wp-crypto-direct-gateway') . '" class="wcdg-qr" /></div><div>';
-        echo '<p><strong>' . esc_html__('Send exactly', 'wp-crypto-direct-gateway') . '</strong> <span class="wcdg-crypto-amount">' . esc_html($record['crypto_amount'] . ' ' . $record['crypto_currency']) . '</span></p>';
-        echo '<p><strong>' . esc_html__('Quote', 'wp-crypto-direct-gateway') . '</strong> <span class="wcdg-fiat-amount">' . esc_html(number_format((float) $record['fiat_amount'], 2) . ' ' . $record['fiat_currency']) . '</span></p>';
-        echo '<p><strong>' . esc_html__('Wallet', 'wp-crypto-direct-gateway') . '</strong> <span class="wcdg-wallet-label">' . esc_html($record['wallet_label'] . ' - ' . $record['wallet_network']) . '</span></p>';
-        echo '<p><strong>' . esc_html__('Address', 'wp-crypto-direct-gateway') . '</strong></p>';
-        echo '<textarea class="wcdg-address" readonly rows="3">' . esc_textarea($record['wallet_address']) . '</textarea>';
-        echo '<div class="wcdg-actions-row"><button type="button" class="wcdg-copy-address">' . esc_html__('Copy address', 'wp-crypto-direct-gateway') . '</button><button type="button" class="wcdg-copy-amount">' . esc_html__('Copy amount', 'wp-crypto-direct-gateway') . '</button><a class="wcdg-open-wallet" href="' . esc_url($record['payment_uri']) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Open wallet app', 'wp-crypto-direct-gateway') . '</a></div>';
-        echo '<p><strong>' . esc_html__('Expires', 'wp-crypto-direct-gateway') . '</strong> <span class="wcdg-expires-at">' . esc_html((string) $record['expires_at']) . '</span></p>';
-        echo '<ol class="wcdg-steps"><li>' . esc_html__('Confirm the network matches the one shown here before sending.', 'wp-crypto-direct-gateway') . '</li><li>' . esc_html__('Send the exact amount to avoid mismatches on a reused address.', 'wp-crypto-direct-gateway') . '</li><li>' . esc_html__('Status will refresh automatically while the watcher polls the chain.', 'wp-crypto-direct-gateway') . '</li></ol>';
+
+        // Details
+        echo '<div class="wcdg-pay-details">';
+        echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Network', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-wallet-label">' . esc_html($record['wallet_label'] . ' \u2013 ' . $record['wallet_network']) . '</span></div>';
+        echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Reference', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-reference">' . esc_html($record['reference']) . '</span></div>';
+        echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Confirmations', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-confirmations">' . esc_html($confirmations . ' / ' . $required) . '</span></div>';
+        echo '</div>';
+
+        // Address
+        echo '<div class="wcdg-pay-address-section">';
+        echo '<span class="wcdg-pay-row-label">' . esc_html__('Wallet address', 'wp-crypto-direct-gateway') . '</span>';
+        echo '<textarea class="wcdg-address" readonly rows="2">' . esc_textarea($record['wallet_address']) . '</textarea>';
+        echo '</div>';
+
+        // Actions
+        echo '<div class="wcdg-pay-actions">';
+        echo '<button type="button" class="wcdg-copy-address">' . esc_html__('Copy address', 'wp-crypto-direct-gateway') . '</button>';
+        echo '<button type="button" class="wcdg-copy-amount">' . esc_html__('Copy amount', 'wp-crypto-direct-gateway') . '</button>';
+        echo '<a class="wcdg-open-wallet" href="' . esc_url($record['payment_uri']) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('Open wallet', 'wp-crypto-direct-gateway') . '</a>';
+        echo '</div>';
+
+        echo '</div>'; // .wcdg-pay-body
+
+        // Footer
+        echo '<div class="wcdg-pay-footer">';
+        echo '<ol class="wcdg-steps">';
+        echo '<li>' . esc_html__('Scan the QR code with your wallet app.', 'wp-crypto-direct-gateway') . '</li>';
+        echo '<li>' . esc_html__('Send the exact amount shown above.', 'wp-crypto-direct-gateway') . '</li>';
+        echo '<li>' . esc_html__('Keep this page open \u2013 status updates automatically.', 'wp-crypto-direct-gateway') . '</li>';
+        echo '</ol>';
         echo '<div class="wcdg-message" aria-live="polite"></div>';
-        echo '</div></div></div></div></section>';
+        echo '<span class="wcdg-expires-at" hidden>' . esc_html((string) $record['expires_at']) . '</span>';
+        echo '</div>';
+
+        echo '</div></div></section>';
     }
 }

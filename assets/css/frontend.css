@@ -1,279 +1,321 @@
+/* WP Crypto Direct Gateway – Professional Payment UI */
+
 .wcdg-payment-form {
-    display: grid;
-    gap: 1.5rem;
-    margin: 2rem 0;
-    position: relative;
+    margin: 2rem auto;
+    max-width: 480px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
+/* === Card === */
 .wcdg-card {
-    background:
-        radial-gradient(circle at top right, color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 22%, transparent), transparent 28%),
-        radial-gradient(circle at bottom left, color-mix(in srgb, var(--wcdg-secondary, #63b9ff) 18%, transparent), transparent 32%),
-        linear-gradient(155deg, #07131e, #102534 62%, #183142);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 28px;
-    box-shadow: 0 28px 80px rgba(7, 19, 30, 0.24);
-    color: #f4f6f8;
+    background: #0d1b2a;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 20px;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+    color: #dce4ed;
     overflow: hidden;
-    padding: 1.75rem;
-    position: relative;
 }
 
-.wcdg-card h2 {
-    color: #f8fbfd;
-    font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
-    font-size: 2rem;
-    margin: 0 0 0.75rem;
-}
-
-.wcdg-panel-header {
-    align-items: start;
+/* === Status / Timer Header === */
+.wcdg-pay-header {
     display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-}
-
-.wcdg-kicker {
-    color: var(--wcdg-primary, #d6ff4b);
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    margin: 0 0 0.5rem;
-    text-transform: uppercase;
-}
-
-.wcdg-logo {
-    display: block;
-    height: auto;
-    margin: 0 0 0.85rem;
-    max-height: 52px;
-    max-width: 180px;
-}
-
-.wcdg-brand-name {
-    color: rgba(244, 246, 248, 0.65);
-    font-size: 0.92rem;
-    font-weight: 600;
-    margin: -0.2rem 0 0.8rem;
-}
-
-.wcdg-trust-points {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.45rem;
-    justify-content: end;
-    max-width: 360px;
-}
-
-.wcdg-trust-points span {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 999px;
-    color: color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 72%, #ffffff);
-    font-size: 0.78rem;
-    padding: 0.45rem 0.7rem;
-}
-
-.wcdg-card p,
-.wcdg-card label span {
-    color: rgba(244, 246, 248, 0.88);
-}
-
-.wcdg-form,
-.wcdg-grid {
-    display: grid;
-    gap: 1rem;
-}
-
-.wcdg-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-.wcdg-card input,
-.wcdg-card select,
-.wcdg-card textarea,
-.wcdg-card button {
-    border: 0;
-    border-radius: 14px;
-    box-sizing: border-box;
-    font: inherit;
-    margin-top: 0.35rem;
-    padding: 0.85rem 1rem;
-    width: 100%;
-}
-
-.wcdg-card input,
-.wcdg-card select,
-.wcdg-card textarea {
-    background: rgba(255, 255, 255, 0.9);
-    color: #10202c;
-}
-
-.wcdg-card button {
-    background: linear-gradient(135deg, var(--wcdg-primary, #d6ff4b), color-mix(in srgb, var(--wcdg-secondary, #63b9ff) 32%, #74d993));
-    box-shadow: 0 12px 30px rgba(116, 217, 147, 0.24);
-    color: #0f1a20;
-    cursor: pointer;
-    font-weight: 700;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-.wcdg-card button:hover,
-.wcdg-card button:focus-visible,
-.wcdg-open-wallet:hover,
-.wcdg-open-wallet:focus-visible {
-    box-shadow: 0 18px 34px rgba(116, 217, 147, 0.3);
-    transform: translateY(-1px);
-}
-
-.wcdg-message {
-    color: var(--wcdg-primary, #d6ff4b);
-    font-weight: 600;
-    min-height: 1.5rem;
-}
-
-.wcdg-request-header {
     align-items: center;
-    display: flex;
-    gap: 1rem;
     justify-content: space-between;
-    margin-bottom: 1rem;
-}
-
-.wcdg-request-meta {
-    align-items: end;
-    display: flex;
-    flex-direction: column;
-    gap: 0.55rem;
-}
-
-.wcdg-eyebrow {
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-    margin: 0;
-    text-transform: uppercase;
-}
-
-.wcdg-countdown {
-    color: rgba(244, 246, 248, 0.8);
-    font-size: 0.82rem;
-    font-weight: 700;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
 .wcdg-status {
-    border-radius: 999px;
-    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
     font-weight: 700;
-    padding: 0.4rem 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+.wcdg-status::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
 }
 
-.wcdg-status-pending,
-.wcdg-status-confirming {
-    background: rgba(255, 204, 102, 0.18);
-    color: #ffd27d;
-}
-
-.wcdg-status-paid {
-    background: color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 16%, transparent);
-    color: color-mix(in srgb, var(--wcdg-primary, #d6ff4b) 58%, #ffffff);
-}
-
+.wcdg-status-pending        { background: rgba(255,180,50,.12); color: #ffb432; }
+.wcdg-status-pending::before { background: #ffb432; }
+.wcdg-status-confirming        { background: rgba(100,180,255,.12); color: #64b4ff; }
+.wcdg-status-confirming::before { background: #64b4ff; animation: wcdg-blink 1.4s infinite; }
+.wcdg-status-paid        { background: rgba(72,210,120,.12); color: #48d278; }
+.wcdg-status-paid::before { background: #48d278; }
 .wcdg-status-expired,
 .wcdg-status-failed,
-.wcdg-status-cancelled {
-    background: rgba(255, 120, 120, 0.18);
-    color: #ff9696;
-}
+.wcdg-status-cancelled        { background: rgba(255,96,96,.12); color: #ff6060; }
+.wcdg-status-expired::before,
+.wcdg-status-failed::before,
+.wcdg-status-cancelled::before { background: #ff6060; }
 
-.wcdg-grid-request {
-    align-items: start;
-    grid-template-columns: minmax(220px, 280px) 1fr;
-}
-
-.wcdg-qr-wrap {
-    background: #fff;
-    border-radius: 20px;
-    padding: 1rem;
-}
-
-.wcdg-qr-mode-note {
-    color: rgba(244, 246, 248, 0.7);
-    font-size: 0.86rem;
-    line-height: 1.45;
-    margin: 0.75rem 0 0;
-}
-
-.wcdg-actions-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 1rem 0 1.1rem;
-}
-
-.wcdg-actions-row button,
-.wcdg-open-wallet {
-    width: auto;
-}
-
-.wcdg-open-wallet {
-    align-items: center;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 14px;
-    color: #f4f6f8;
-    display: inline-flex;
+.wcdg-countdown {
+    font-family: "SF Mono", "Fira Code", "Cascadia Code", monospace;
+    font-size: 1.15rem;
     font-weight: 700;
-    justify-content: center;
-    margin-top: 0.35rem;
-    padding: 0.85rem 1rem;
-    text-decoration: none;
-    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    color: #ffb432;
+    letter-spacing: 0.03em;
 }
 
-.wcdg-woo-box {
-    margin: 2rem 0;
+@keyframes wcdg-blink { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* === Body === */
+.wcdg-pay-body {
+    padding: 1.75rem 1.5rem 1.25rem;
 }
 
-.wcdg-steps {
-    color: rgba(244, 246, 248, 0.84);
-    margin: 1rem 0 0;
-    padding-left: 1.25rem;
+/* === QR Code === */
+.wcdg-pay-qr {
+    text-align: center;
+    margin-bottom: 1.25rem;
 }
-
-.wcdg-steps li + li {
-    margin-top: 0.45rem;
+.wcdg-qr-frame {
+    display: inline-block;
+    background: #fff;
+    border-radius: 14px;
+    padding: 14px;
+    line-height: 0;
 }
-
 .wcdg-qr {
     display: block;
-    height: auto;
-    max-width: 280px;
-    width: 100%;
+    width: 200px;
+    height: 200px;
 }
 
-@media (max-width: 640px) {
-    .wcdg-card {
-        border-radius: 18px;
-        padding: 1.2rem;
-    }
+/* === Amount === */
+.wcdg-pay-amount {
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+.wcdg-pay-amount-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,.4);
+    margin-bottom: 4px;
+}
+.wcdg-crypto-amount {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: #fff;
+}
+.wcdg-fiat-amount {
+    display: block;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,.4);
+    margin-top: 2px;
+}
 
-    .wcdg-card h2 {
-        font-size: 1.55rem;
-    }
+/* === Detail Rows === */
+.wcdg-pay-details {
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+.wcdg-pay-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .7rem 1rem;
+}
+.wcdg-pay-row + .wcdg-pay-row {
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+.wcdg-pay-row-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: rgba(255,255,255,.4);
+}
+.wcdg-pay-row-value {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.wcdg-confirmations {
+    font-family: "SF Mono", monospace;
+    font-weight: 700;
+}
 
-    .wcdg-panel-header,
-    .wcdg-request-header {
-        flex-direction: column;
-    }
+/* === Address === */
+.wcdg-pay-address-section {
+    margin-bottom: 1rem;
+}
+.wcdg-pay-address-section .wcdg-pay-row-label {
+    display: block;
+    margin-bottom: 6px;
+}
+.wcdg-address {
+    display: block;
+    width: 100%;
+    padding: .7rem .85rem;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    color: #dce4ed;
+    font-family: "SF Mono", "Fira Code", monospace;
+    font-size: 0.82rem;
+    word-break: break-all;
+    line-height: 1.5;
+    resize: none;
+    box-sizing: border-box;
+}
 
-    .wcdg-trust-points,
-    .wcdg-request-meta {
-        justify-content: start;
-        max-width: none;
-        width: 100%;
-    }
+/* === Action Buttons === */
+.wcdg-pay-actions {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+.wcdg-pay-actions button,
+.wcdg-open-wallet {
+    flex: 1 1 30%;
+    min-width: 0;
+    padding: .65rem .75rem;
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px;
+    background: rgba(255,255,255,.04);
+    color: #dce4ed;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background .15s, border-color .15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+}
+.wcdg-pay-actions button:hover,
+.wcdg-open-wallet:hover {
+    background: rgba(255,255,255,.08);
+    border-color: rgba(255,255,255,.18);
+}
 
-    .wcdg-grid-request {
-        grid-template-columns: 1fr;
-    }
+/* === Footer === */
+.wcdg-pay-footer {
+    padding: .85rem 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.06);
+}
+.wcdg-steps {
+    margin: 0;
+    padding: 0 0 0 1.1rem;
+    font-size: .78rem;
+    color: rgba(255,255,255,.35);
+    line-height: 1.7;
+}
+.wcdg-steps li + li { margin-top: 2px; }
+
+/* === Message === */
+.wcdg-message {
+    text-align: center;
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--wcdg-primary, #d6ff4b);
+    min-height: 1.4rem;
+    padding: .5rem 0 0;
+}
+
+/* === Form (shortcode entry) === */
+.wcdg-form-card {
+    padding: 1.5rem;
+}
+.wcdg-form-card h2 {
+    color: #fff;
+    font-size: 1.35rem;
+    font-weight: 700;
+    margin: 0 0 .35rem;
+}
+.wcdg-form-card > p {
+    color: rgba(255,255,255,.55);
+    font-size: .88rem;
+    margin: 0 0 1.15rem;
+    line-height: 1.5;
+}
+.wcdg-form {
+    display: grid;
+    gap: .75rem;
+}
+.wcdg-form label {
+    display: block;
+}
+.wcdg-form label span {
+    display: block;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: rgba(255,255,255,.45);
+    margin-bottom: 4px;
+}
+.wcdg-form input,
+.wcdg-form select {
+    width: 100%;
+    padding: .7rem .85rem;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 10px;
+    color: #dce4ed;
+    font-size: .92rem;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+.wcdg-form input:focus,
+.wcdg-form select:focus {
+    outline: none;
+    border-color: var(--wcdg-primary, #d6ff4b);
+}
+.wcdg-form input::placeholder {
+    color: rgba(255,255,255,.25);
+}
+.wcdg-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+}
+.wcdg-form button[type="submit"] {
+    width: 100%;
+    padding: .8rem;
+    margin-top: .25rem;
+    background: var(--wcdg-primary, #d6ff4b);
+    color: #0d1b2a;
+    border: 0;
+    border-radius: 10px;
+    font-size: .92rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: opacity .15s;
+}
+.wcdg-form button[type="submit"]:hover {
+    opacity: .88;
+}
+
+/* === Hidden === */
+.wcdg-payment-request[hidden] { display: none; }
+
+/* === WooCommerce === */
+.wcdg-woo-box { margin: 2rem 0; }
+.wcdg-woo-box .wcdg-payment-form { margin: 0 auto; }
+
+/* === Responsive === */
+@media (max-width: 520px) {
+    .wcdg-payment-form { margin: 1rem; max-width: none; }
+    .wcdg-grid { grid-template-columns: 1fr; }
+    .wcdg-qr { width: 180px; height: 180px; }
+    .wcdg-pay-header { flex-direction: column; gap: .6rem; align-items: flex-start; }
+    .wcdg-pay-actions { flex-direction: column; }
+    .wcdg-pay-actions button,
+    .wcdg-open-wallet { width: 100%; }
+    .wcdg-crypto-amount { font-size: 1.35rem; }
 }

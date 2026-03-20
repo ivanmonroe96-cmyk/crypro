@@ -75,8 +75,6 @@ class WCDG_Plugin
                 'copySuccess' => __('Wallet address copied.', 'wp-crypto-direct-gateway'),
                 'copyAmountSuccess' => __('Crypto amount copied.', 'wp-crypto-direct-gateway'),
                 'paid' => __('Payment confirmed on-chain.', 'wp-crypto-direct-gateway'),
-                'qrDynamic' => __('Live QR with amount and wallet details.', 'wp-crypto-direct-gateway'),
-                'qrStatic' => __('Showing uploaded wallet QR image. Double-check the exact amount before sending.', 'wp-crypto-direct-gateway'),
             ),
         ));
 

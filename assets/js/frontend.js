@@ -1,175 +1,137 @@
 (function () {
-    const formatAmount = (amount, currency) => {
-        const numericAmount = Number(amount);
-        if (Number.isNaN(numericAmount)) {
-            return '';
-        }
+    'use strict';
 
-        return numericAmount.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        }) + ' ' + currency;
-    };
+    var fmtStatus = function (s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; };
 
-    const formatStatus = (status) => {
-        if (!status) {
-            return '';
-        }
-        return status.charAt(0).toUpperCase() + status.slice(1);
-    };
-
-    const startCountdown = (container, expiresAt) => {
-        const countdown = container.querySelector('.wcdg-countdown');
-        window.clearInterval(container._wcdgCountdown);
-
-        if (!countdown || !expiresAt) {
-            return;
-        }
-
-        const tick = () => {
-            const remaining = new Date(expiresAt.replace(' ', 'T') + 'Z').getTime() - Date.now();
-            if (remaining <= 0) {
-                countdown.textContent = 'Expired';
-                window.clearInterval(container._wcdgCountdown);
-                return;
-            }
-
-            const totalSeconds = Math.floor(remaining / 1000);
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-            countdown.textContent = 'Time left ' + String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+    /* ── Timer ───────────────────────────────────── */
+    var startCountdown = function (box, expiresAt) {
+        var el = box.querySelector('.wcdg-countdown');
+        clearInterval(box._wcdgTick);
+        if (!el || !expiresAt) return;
+        var tick = function () {
+            var ms = new Date(expiresAt.replace(' ', 'T') + 'Z').getTime() - Date.now();
+            if (ms <= 0) { el.textContent = 'Expired'; clearInterval(box._wcdgTick); return; }
+            var m = Math.floor(ms / 60000), s = Math.floor((ms % 60000) / 1000);
+            el.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
         };
-
         tick();
-        container._wcdgCountdown = window.setInterval(tick, 1000);
+        box._wcdgTick = setInterval(tick, 1000);
     };
 
-    const updatePaymentBox = (container, payment) => {
-        const requestWrap = container.querySelector('.wcdg-payment-request');
-        const qrModeNote = container.querySelector('.wcdg-qr-mode-note');
-        if (requestWrap && 'hidden' in requestWrap) {
-            requestWrap.hidden = false;
+    /* ── Update the payment card ─────────────────── */
+    var updateCard = function (box, p) {
+        var req = box.querySelector('.wcdg-payment-request');
+        if (req && req.hidden) req.hidden = false;
+
+        /* Always use the clean dynamic QR (amount-aware) */
+        var qrUrl = p.dynamic_payment_qr_url || p.payment_qr_url || '';
+
+        var set = function (sel, txt) { var el = box.querySelector(sel); if (el) el.textContent = txt; };
+
+        set('.wcdg-reference', p.reference || '');
+        set('.wcdg-crypto-amount', (p.crypto_amount || '') + ' ' + (p.crypto_currency || ''));
+        set('.wcdg-fiat-amount', '\u2248 ' + Number(p.fiat_amount || 0).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + ' ' + (p.fiat_currency || ''));
+        set('.wcdg-wallet-label', (p.wallet_label || '') + ' \u2013 ' + (p.wallet_network || ''));
+        set('.wcdg-confirmations', (p.confirmations || 0) + ' / ' + (p.required_confirmations || 1));
+
+        var statusEl = box.querySelector('.wcdg-status');
+        if (statusEl) {
+            statusEl.textContent = fmtStatus(p.status);
+            statusEl.className = 'wcdg-status wcdg-status-' + (p.status || 'pending');
         }
 
-        container.querySelector('.wcdg-reference').textContent = payment.reference;
-        container.querySelector('.wcdg-status').textContent = formatStatus(payment.status);
-        container.querySelector('.wcdg-status').className = 'wcdg-status wcdg-status-' + payment.status;
-        container.querySelector('.wcdg-qr').src = payment.payment_qr_url;
-        container.querySelector('.wcdg-crypto-amount').textContent = payment.crypto_amount + ' ' + payment.crypto_currency;
-        container.querySelector('.wcdg-fiat-amount').textContent = formatAmount(payment.fiat_amount, payment.fiat_currency);
-        container.querySelector('.wcdg-wallet-label').textContent = payment.wallet_label + ' - ' + payment.wallet_network;
-        container.querySelector('.wcdg-address').value = payment.wallet_address;
-        container.querySelector('.wcdg-expires-at').textContent = payment.expires_at || '';
-        container.querySelector('.wcdg-open-wallet').href = payment.payment_uri || '#';
-        if (qrModeNote) {
-            qrModeNote.textContent = payment.dynamic_payment_qr_url && payment.payment_qr_url !== payment.dynamic_payment_qr_url
-                ? wcdgConfig.strings.qrStatic
-                : wcdgConfig.strings.qrDynamic;
-        }
-        if (requestWrap) {
-            requestWrap.dataset.reference = payment.reference;
-            requestWrap.dataset.amount = payment.crypto_amount;
+        var qr = box.querySelector('.wcdg-qr');
+        if (qr) qr.src = qrUrl;
+
+        var addr = box.querySelector('.wcdg-address');
+        if (addr) {
+            if (addr.tagName === 'TEXTAREA' || addr.tagName === 'INPUT') addr.value = p.wallet_address || '';
+            else addr.textContent = p.wallet_address || '';
         }
 
-        startCountdown(container, payment.expires_at);
+        var walletLink = box.querySelector('.wcdg-open-wallet');
+        if (walletLink) walletLink.href = p.payment_uri || '#';
+
+        if (req) {
+            req.dataset.reference = p.reference || '';
+            req.dataset.amount = p.crypto_amount || '';
+        }
+
+        box.dataset.status = p.status || 'pending';
+        startCountdown(box, p.expires_at);
     };
 
-    const pollStatus = (container, reference) => {
-        window.clearInterval(container._wcdgPoll);
-        container._wcdgPoll = window.setInterval(async () => {
-            const response = await fetch(wcdgConfig.statusUrlBase + encodeURIComponent(reference) + '/status', {
-                headers: {
-                    Accept: 'application/json'
-                }
-            });
-
-            if (!response.ok) {
-                return;
-            }
-
-            const payment = await response.json();
-            updatePaymentBox(container, payment);
-
-            if (['paid', 'expired', 'failed', 'cancelled'].includes(payment.status)) {
-                window.clearInterval(container._wcdgPoll);
-            }
-        }, 15000);
+    /* ── Poll status ─────────────────────────────── */
+    var poll = function (box, ref) {
+        clearInterval(box._wcdgPoll);
+        box._wcdgPoll = setInterval(function () {
+            fetch(wcdgConfig.statusUrlBase + encodeURIComponent(ref) + '/status', { headers: { Accept: 'application/json' } })
+                .then(function (r) { return r.ok ? r.json() : null; })
+                .then(function (data) {
+                    if (!data) return;
+                    updateCard(box, data);
+                    if (['paid', 'expired', 'failed', 'cancelled'].indexOf(data.status) !== -1) {
+                        clearInterval(box._wcdgPoll);
+                        if (data.status === 'paid') {
+                            var msg = box.querySelector('.wcdg-message');
+                            if (msg) msg.textContent = wcdgConfig.strings.paid || 'Payment confirmed!';
+                        }
+                    }
+                })
+                .catch(function () {});
+        }, 12000);
     };
 
-    const bindPaymentContainer = (container) => {
-        const form = container.querySelector('.wcdg-form');
-        const message = container.querySelector('.wcdg-message');
-        const copyButton = container.querySelector('.wcdg-copy-address');
-        const copyAmountButton = container.querySelector('.wcdg-copy-amount');
+    /* ── Bind one container ──────────────────────── */
+    var bind = function (box) {
+        var form = box.querySelector('.wcdg-form');
+        var msg  = box.querySelector('.wcdg-message');
 
-        if (form && message) {
-            form.addEventListener('submit', async (event) => {
-                event.preventDefault();
-                message.textContent = wcdgConfig.strings.creating;
-
-                const formData = new FormData(form);
-                formData.append('source', 'shortcode');
-                const coinField = form.querySelector('[name="wallet_id"]');
-                if (!formData.get('coin') && coinField) {
-                    formData.append('coin', coinField.value);
-                }
-
-                const response = await fetch(wcdgConfig.createRequestUrl, {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json'
-                    },
-                    body: formData
-                });
-
-                const payload = await response.json();
-
-                if (!response.ok) {
-                    message.textContent = payload.message || wcdgConfig.strings.error;
-                    return;
-                }
-
-                message.textContent = wcdgConfig.strings.created;
-                updatePaymentBox(container, payload);
-                pollStatus(container, payload.reference);
-            });
-        }
-
-        if (copyButton) {
-            copyButton.addEventListener('click', async () => {
-                const addressField = container.querySelector('.wcdg-address');
-                if (!addressField) {
-                    return;
-                }
-                await navigator.clipboard.writeText(addressField.value);
-                if (message) {
-                    message.textContent = wcdgConfig.strings.copySuccess;
-                }
+        /* Form submit (shortcode) */
+        if (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (msg) msg.textContent = wcdgConfig.strings.creating || 'Creating payment\u2026';
+                var fd = new FormData(form);
+                fd.append('source', 'shortcode');
+                var coin = form.querySelector('[name="wallet_id"]');
+                if (!fd.get('coin') && coin) fd.append('coin', coin.value);
+                fetch(wcdgConfig.createRequestUrl, { method: 'POST', headers: { Accept: 'application/json' }, body: fd })
+                    .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, data: j }; }); })
+                    .then(function (res) {
+                        if (!res.ok) { if (msg) msg.textContent = res.data.message || wcdgConfig.strings.error; return; }
+                        if (msg) msg.textContent = '';
+                        updateCard(box, res.data);
+                        poll(box, res.data.reference);
+                    })
+                    .catch(function () { if (msg) msg.textContent = wcdgConfig.strings.error || 'An error occurred.'; });
             });
         }
 
-        if (copyAmountButton) {
-            copyAmountButton.addEventListener('click', async () => {
-                const requestWrap = container.querySelector('.wcdg-payment-request');
-                if (!requestWrap || !requestWrap.dataset.amount) {
-                    return;
-                }
-                await navigator.clipboard.writeText(requestWrap.dataset.amount);
-                if (message) {
-                    message.textContent = wcdgConfig.strings.copyAmountSuccess;
-                }
-            });
-        }
+        /* Copy buttons */
+        var copyAddr = box.querySelector('.wcdg-copy-address');
+        var copyAmt  = box.querySelector('.wcdg-copy-amount');
+        if (copyAddr) copyAddr.addEventListener('click', function () {
+            var a = box.querySelector('.wcdg-address');
+            if (a) navigator.clipboard.writeText(a.value || a.textContent).then(function () { if (msg) msg.textContent = wcdgConfig.strings.copySuccess || 'Copied!'; });
+        });
+        if (copyAmt) copyAmt.addEventListener('click', function () {
+            var req = box.querySelector('.wcdg-payment-request');
+            if (req && req.dataset.amount) navigator.clipboard.writeText(req.dataset.amount).then(function () { if (msg) msg.textContent = wcdgConfig.strings.copyAmountSuccess || 'Amount copied!'; });
+        });
 
-        const initialReference = container.dataset.reference || (container.querySelector('.wcdg-payment-request') && container.querySelector('.wcdg-payment-request').dataset.reference);
-        if (initialReference) {
-            pollStatus(container, initialReference);
-            const expiresAt = container.querySelector('.wcdg-expires-at');
-            if (expiresAt && expiresAt.textContent) {
-                startCountdown(container, expiresAt.textContent);
-            }
+        /* Auto-poll for WooCommerce panels with existing reference */
+        var ref = box.dataset.reference;
+        if (!ref) {
+            var req = box.querySelector('.wcdg-payment-request');
+            if (req) ref = req.dataset.reference;
+        }
+        if (ref) {
+            poll(box, ref);
+            var exp = box.querySelector('.wcdg-expires-at');
+            if (exp && exp.textContent) startCountdown(box, exp.textContent);
         }
     };
 
-    document.querySelectorAll('.wcdg-payment-form, .wcdg-live-payment').forEach(bindPaymentContainer);
+    document.querySelectorAll('.wcdg-payment-form, .wcdg-live-payment').forEach(bind);
 }());
