@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0 - 2026-03-20
+
+- Professional QR-centric payment UI redesign.
+- Always use clean dynamic QR code instead of static wallet screenshots.
+- Centered minimal dark card layout with prominent countdown timer and status badge.
+- Real-time blockchain confirmation counter in payment details.
+- Clean detail rows: network, reference, confirmations, wallet address.
+- WooCommerce thank-you page shows "Complete your payment" until blockchain confirms.
+- Order marked as received only after sufficient blockchain confirmations.
+- Removed cluttered trust badges, kickers, and gradient noise.
+- Responsive mobile-first design.
+
 ## 0.2.0 - 2026-03-20
 
 - Cleaned plugin metadata for WordPress distribution.

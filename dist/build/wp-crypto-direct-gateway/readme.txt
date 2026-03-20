@@ -4,7 +4,7 @@ Tags: cryptocurrency, bitcoin, ethereum, usdt, woocommerce, payment gateway, qr 
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,16 @@ No. The plugin includes a standalone shortcode flow as well as WooCommerce suppo
 
 == Changelog ==
 
+= 0.3.0 =
+
+* Professional QR-centric payment UI redesign.
+* Always display clean dynamic QR code instead of static wallet screenshots.
+* Centered card layout with prominent countdown timer and status badge.
+* Real-time blockchain confirmation counter (X / Y) in payment details.
+* WooCommerce thank-you page now instructs users to complete payment before marking order as received.
+* Order only shown as received after sufficient blockchain confirmations.
+* Responsive mobile-first design.
+
 = 0.2.0 =
 
 * Cleaned plugin headers and distribution metadata.
@@ -79,6 +89,10 @@ No. The plugin includes a standalone shortcode flow as well as WooCommerce suppo
 * Initial direct crypto payment gateway release with WooCommerce support, QR checkout, wallet management, and automatic watcher services.
 
 == Upgrade Notice ==
+
+= 0.3.0 =
+
+Major UI redesign with professional QR-centric payment display, confirmation tracking, and improved WooCommerce order flow.
 
 = 0.2.0 =
 

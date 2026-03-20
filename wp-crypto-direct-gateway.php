@@ -2,7 +2,7 @@
 /**
  * Plugin Name: WP Crypto Direct Gateway
  * Description: Direct crypto payment gateway for WordPress and WooCommerce with QR-based checkout, wallet copy actions, automatic payment watching, and branded payment instructions.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Author: WP Crypto Direct Gateway
  * Text Domain: wp-crypto-direct-gateway
  * Requires at least: 6.0
@@ -16,7 +16,7 @@ if (! defined('ABSPATH')) {
     exit;
 }
 
-define('WCDG_VERSION', '0.2.0');
+define('WCDG_VERSION', '0.3.0');
 define('WCDG_PLUGIN_FILE', __FILE__);
 define('WCDG_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('WCDG_PLUGIN_URL', plugin_dir_url(__FILE__));
