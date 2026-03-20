@@ -10,10 +10,10 @@ class WCDG_Settings
 
     public static function default_settings(): array
     {
-        $btc_qr_url = self::get_bundled_wallet_qr_url('btc-wallet.png');
-        $eth_qr_url = self::get_bundled_wallet_qr_url('eth-wallet.png');
-        $usdt_trc20_qr_url = self::get_bundled_wallet_qr_url('usdt-trc20-wallet.png');
-        $usdt_erc20_qr_url = self::get_bundled_wallet_qr_url('usdt-erc20-wallet.png');
+        $btc_qr_url = self::get_bundled_wallet_qr_url(array('btc-wallet.png', 'btc.jpeg'));
+        $eth_qr_url = self::get_bundled_wallet_qr_url(array('eth-wallet.png', 'eth.jpeg'));
+        $usdt_trc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-trc20-wallet.png', 'usdttrc20.jpeg'));
+        $usdt_erc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-erc20-wallet.png', 'usdterc20.jpeg'));
 
         return array(
             'merchant_name' => get_bloginfo('name') ?: 'Merchant',
@@ -79,15 +79,19 @@ class WCDG_Settings
         );
     }
 
-    private static function get_bundled_wallet_qr_url(string $filename): string
+    private static function get_bundled_wallet_qr_url(array $filenames): string
     {
-        $path = WCDG_PLUGIN_DIR . 'assets/wallet-qr/' . $filename;
+        foreach ($filenames as $filename) {
+            $path = WCDG_PLUGIN_DIR . 'assets/wallet-qr/' . $filename;
 
-        if (! file_exists($path)) {
-            return '';
+            if (! file_exists($path)) {
+                continue;
+            }
+
+            return esc_url_raw(WCDG_PLUGIN_URL . 'assets/wallet-qr/' . rawurlencode($filename));
         }
 
-        return esc_url_raw(WCDG_PLUGIN_URL . 'assets/wallet-qr/' . rawurlencode($filename));
+        return '';
     }
 
     public function hooks(): void

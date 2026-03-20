@@ -2,9 +2,13 @@ Place optional static wallet QR images in this folder if you want them bundled w
 
 Suggested filenames:
 - btc-wallet.png
+- btc.jpeg
 - eth-wallet.png
+- eth.jpeg
 - usdt-erc20-wallet.png
+- usdterc20.jpeg
 - usdt-trc20-wallet.png
+- usdttrc20.jpeg
 
 If you use those exact filenames, the plugin will auto-detect them and connect them to the matching default wallets.
 
