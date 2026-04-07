@@ -8,6 +8,12 @@ class WCDG_Settings
 {
     public const OPTION_KEY = 'wcdg_settings';
 
+    private const LEGACY_BUNDLED_WALLET_HASHES = array(
+        '3a40a900e01bc1f405691528bba9f5a7453ba5fa137cb5578822ce4a728b57fa',
+        '070bc22a0c389fd02740ce609080a04da21d5bc5c08e9f7d00bf31bc3300e03b',
+        '6578255387d06004447b4d46bb05189d70c80bd1b162a99670161d26e9813166',
+    );
+
     public static function default_settings(): array
     {
         $btc_qr_url = self::get_bundled_wallet_qr_url(array('btc-wallet.jpeg', 'btc-wallet.png', 'btc.jpeg'));
@@ -34,7 +40,7 @@ class WCDG_Settings
                     'name' => 'Bitcoin',
                     'network' => 'Bitcoin',
                     'coingecko_id' => 'bitcoin',
-                    'address' => 'bc1qev9qvwxennyypmth024jndwlqqh7ft9mzjnapr',
+                    'address' => '',
                     'static_qr_url' => $btc_qr_url,
                     'qr_display_mode' => $btc_qr_url !== '' ? 'static' : 'dynamic',
                     'confirmations' => 1,
@@ -46,7 +52,7 @@ class WCDG_Settings
                     'name' => 'Ethereum',
                     'network' => 'Ethereum',
                     'coingecko_id' => 'ethereum',
-                    'address' => '0x08CA715802e9B7Be5F21D8e3aB67Ab515eDde955',
+                    'address' => '',
                     'static_qr_url' => $eth_qr_url,
                     'qr_display_mode' => $eth_qr_url !== '' ? 'static' : 'dynamic',
                     'confirmations' => 12,
@@ -58,7 +64,7 @@ class WCDG_Settings
                     'name' => 'Tether',
                     'network' => 'TRC20',
                     'coingecko_id' => 'tether',
-                    'address' => 'TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL',
+                    'address' => '',
                     'static_qr_url' => $usdt_trc20_qr_url,
                     'qr_display_mode' => $usdt_trc20_qr_url !== '' ? 'static' : 'dynamic',
                     'confirmations' => 1,
@@ -70,7 +76,7 @@ class WCDG_Settings
                     'name' => 'Tether',
                     'network' => 'ERC20',
                     'coingecko_id' => 'tether',
-                    'address' => '0x08CA715802e9B7Be5F21D8e3aB67Ab515eDde955',
+                    'address' => '',
                     'static_qr_url' => $usdt_erc20_qr_url,
                     'qr_display_mode' => $usdt_erc20_qr_url !== '' ? 'static' : 'dynamic',
                     'confirmations' => 1,
@@ -130,7 +136,7 @@ class WCDG_Settings
         $wallets = isset($settings['wallets']) && is_array($settings['wallets']) ? $settings['wallets'] : array();
 
         $wallets = array_values(array_filter(array_map(array(__CLASS__, 'sanitize_wallet'), $wallets), function (array $wallet) use ($enabled_only): bool {
-            if ($wallet['symbol'] === '' || $wallet['address'] === '') {
+            if ($wallet['symbol'] === '' || ! self::has_usable_wallet_address($wallet['address'])) {
                 return false;
             }
 
@@ -142,6 +148,43 @@ class WCDG_Settings
         }));
 
         return $wallets;
+    }
+
+    public static function has_usable_wallet_address(string $address): bool
+    {
+        $normalized = trim($address);
+
+        if ($normalized === '') {
+            return false;
+        }
+
+        return ! self::is_legacy_bundled_wallet_address($normalized);
+    }
+
+    public static function has_legacy_bundled_wallets(array $wallets): bool
+    {
+        foreach ($wallets as $wallet) {
+            if (! is_array($wallet)) {
+                continue;
+            }
+
+            if (self::is_legacy_bundled_wallet_address((string) ($wallet['address'] ?? ''))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static function is_legacy_bundled_wallet_address(string $address): bool
+    {
+        $normalized = trim($address);
+
+        if ($normalized === '') {
+            return false;
+        }
+
+        return in_array(hash('sha256', $normalized), self::LEGACY_BUNDLED_WALLET_HASHES, true);
     }
 
     public static function find_wallet(string $symbol): ?array
@@ -227,6 +270,7 @@ class WCDG_Settings
     {
         $settings = self::get_settings();
         $wallets = isset($settings['wallets']) && is_array($settings['wallets']) ? $settings['wallets'] : array();
+        $has_legacy_wallets = self::has_legacy_bundled_wallets($wallets);
         ?>
         <div class="wrap wcdg-admin-shell">
             <section class="wcdg-admin-hero">
@@ -244,6 +288,10 @@ class WCDG_Settings
 
             <?php if (isset($_GET['updated'])) : ?>
                 <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Settings saved.', 'wp-crypto-direct-gateway'); ?></p></div>
+            <?php endif; ?>
+
+            <?php if ($has_legacy_wallets) : ?>
+                <div class="notice notice-warning"><p><?php esc_html_e('Some wallet rows still contain legacy bundled sample addresses. Those rows are ignored at checkout until you replace them with your own wallet addresses.', 'wp-crypto-direct-gateway'); ?></p></div>
             <?php endif; ?>
 
             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
@@ -320,7 +368,7 @@ class WCDG_Settings
                             <p><?php esc_html_e('Use this before publishing the gateway live.', 'wp-crypto-direct-gateway'); ?></p>
                         </div>
                         <ul class="wcdg-checklist">
-                            <li><?php esc_html_e('Confirm each wallet address and network.', 'wp-crypto-direct-gateway'); ?></li>
+                            <li><?php esc_html_e('Paste each wallet address manually and confirm the network.', 'wp-crypto-direct-gateway'); ?></li>
                             <li><?php esc_html_e('Verify the brand colors and logo render correctly.', 'wp-crypto-direct-gateway'); ?></li>
                             <li><?php esc_html_e('Place one test order per enabled asset.', 'wp-crypto-direct-gateway'); ?></li>
                             <li><?php esc_html_e('Keep watcher enabled unless you use an external monitoring service.', 'wp-crypto-direct-gateway'); ?></li>
@@ -337,7 +385,7 @@ class WCDG_Settings
                 <section class="wcdg-admin-panel">
                     <div class="wcdg-admin-panel-header">
                         <h2><?php esc_html_e('Wallets', 'wp-crypto-direct-gateway'); ?></h2>
-                        <p><?php esc_html_e('Add one wallet per coin or network. Multi-network assets such as USDT should be added once per network so checkout and QR requests stay accurate.', 'wp-crypto-direct-gateway'); ?></p>
+                        <p><?php esc_html_e('Add one wallet per coin or network. Wallet templates ship without payout addresses, so you must paste your own address for each enabled row. Multi-network assets such as USDT should be added once per network so checkout and QR requests stay accurate.', 'wp-crypto-direct-gateway'); ?></p>
                     </div>
 
                     <table class="widefat striped" id="wcdg-wallet-table">

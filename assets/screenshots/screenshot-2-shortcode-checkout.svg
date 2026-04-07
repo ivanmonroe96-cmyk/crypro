@@ -32,7 +32,7 @@
   <text x="1118" y="266" font-size="24" font-family="Arial, sans-serif" fill="#ffd27d" font-weight="700">0.00084213 BTC</text>
   <rect x="954" y="318" width="232" height="232" rx="22" fill="#ffffff"/>
   <path d="M986 350h44v44h-44zm124 0h44v44h-44zm-124 124h44v-44h-44zm124 0h-44v-44h44zm-88-88h18v18h-18zm28 0h18v18h-18zm0 28h18v18h-18zm28 28h18v18h-18zm-56 28h18v18h-18zm84-56h18v18h-18zm-56 56h18v18h-18zm84 28h18v18h-18zm-28-56h18v18h-18z" fill="#0f1722"/>
-  <text x="920" y="592" font-size="24" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">1BvBMSEYstWetqTFn5Au4m4GFg7xJaNVN2</text>
+  <text x="920" y="592" font-size="24" font-family="Arial, sans-serif" fill="#ffffff" font-weight="700">Paste your Bitcoin wallet address</text>
   <text x="920" y="628" font-size="18" font-family="Arial, sans-serif" fill="#8ca0b4">Generated payment URI, live quote, and copy actions from the shortcode request.</text>
   <rect x="920" y="664" width="146" height="52" rx="18" fill="#192737"/>
   <rect x="1082" y="664" width="146" height="52" rx="18" fill="#192737"/>

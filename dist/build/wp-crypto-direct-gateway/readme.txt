@@ -32,7 +32,7 @@ This plugin is designed for direct wallet settlement, not custodial conversion o
 1. Upload the plugin zip through the WordPress Plugins screen, or upload the `wp-crypto-direct-gateway` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the Plugins screen in WordPress.
 3. Open `Crypto Gateway` in the WordPress admin area.
-4. Review the wallet addresses, confirmations, brand settings, and callback secret.
+4. Paste your wallet addresses manually, then review confirmations, brand settings, and the callback secret.
 5. If you use WooCommerce, enable `Crypto Direct Gateway` under WooCommerce payment settings.
 
 == Frequently Asked Questions ==

@@ -38,15 +38,15 @@
     <text x="884" y="612" font-size="16" fill="#617282" font-weight="700">CONF</text>
     <text x="116" y="684" font-size="20" fill="#10202c">BTC</text>
     <text x="258" y="684" font-size="20" fill="#10202c">Bitcoin</text>
-    <text x="462" y="684" font-size="18" fill="#405463">bc1qev9qvwxennyypmth024...</text>
+    <text x="462" y="684" font-size="18" fill="#405463">Paste your BTC wallet here</text>
     <text x="894" y="684" font-size="20" fill="#10202c">1</text>
     <text x="116" y="744" font-size="20" fill="#10202c">USDT</text>
     <text x="258" y="744" font-size="20" fill="#10202c">TRC20</text>
-    <text x="462" y="744" font-size="18" fill="#405463">TGkyrQigqKChK4KSfEjTdS...</text>
+    <text x="462" y="744" font-size="18" fill="#405463">Paste your TRC20 wallet here</text>
     <text x="894" y="744" font-size="20" fill="#10202c">1</text>
     <text x="116" y="804" font-size="20" fill="#10202c">ETH</text>
     <text x="258" y="804" font-size="20" fill="#10202c">Ethereum</text>
-    <text x="462" y="804" font-size="18" fill="#405463">0x08CA715802e9B7Be5F21D...</text>
+    <text x="462" y="804" font-size="18" fill="#405463">Paste your ETH wallet here</text>
     <text x="894" y="804" font-size="20" fill="#10202c">12</text>
   </g>
   <text x="1102" y="320" font-size="34" font-family="Arial, sans-serif" fill="#10202c" font-weight="700">Release Checklist</text>

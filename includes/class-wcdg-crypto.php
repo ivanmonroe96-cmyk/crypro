@@ -66,7 +66,31 @@ class WCDG_Crypto
             }
         }
 
-        return WCDG_Settings::find_wallet_by_symbol_and_network((string) ($record['crypto_currency'] ?? ''), (string) ($record['wallet_network'] ?? ''));
+        $wallet = WCDG_Settings::find_wallet_by_symbol_and_network((string) ($record['crypto_currency'] ?? ''), (string) ($record['wallet_network'] ?? ''));
+        if ($wallet) {
+            return $wallet;
+        }
+
+        $symbol = strtoupper((string) ($record['crypto_currency'] ?? ''));
+        $network = (string) ($record['wallet_network'] ?? '');
+        $address = (string) ($record['wallet_address'] ?? '');
+
+        if ($symbol === '' || $address === '') {
+            return null;
+        }
+
+        return array(
+            'uid' => sanitize_key((string) ($record['meta']['wallet_uid'] ?? '')),
+            'enabled' => 1,
+            'symbol' => $symbol,
+            'name' => (string) ($record['wallet_label'] ?? $symbol),
+            'network' => $network,
+            'coingecko_id' => '',
+            'address' => $address,
+            'static_qr_url' => '',
+            'qr_display_mode' => 'dynamic',
+            'confirmations' => max(1, absint($record['required_confirmations'] ?? 1)),
+        );
     }
 
     public static function is_bitcoin(array $record): bool

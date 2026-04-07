@@ -16,7 +16,7 @@ Backward-compatible filenames still supported:
 - usdt-trc20-wallet.png
 - usdttrc20.jpeg
 
-If you use any of those exact filenames, the plugin will auto-detect them and connect them to the matching default wallets.
+If you use any of those exact filenames, the plugin will auto-detect them and connect them to the matching wallet templates.
 
 You can also paste any other asset URL into the wallet row inside the plugin settings page and switch QR mode to Static image.
 

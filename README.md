@@ -19,12 +19,14 @@ WordPress plugin for direct crypto payments to your own wallet addresses, with a
 - Multi-network wallet support, including USDT on TRC20 and ERC20
 - Brand controls for merchant name, tagline, colors, and optional logo URL
 
-## Preloaded wallets
+## Wallet templates
 
-- BTC on Bitcoin: `bc1qev9qvwxennyypmth024jndwlqqh7ft9mzjnapr`
-- ETH on Ethereum: `0x08CA715802e9B7Be5F21D8e3aB67Ab515eDde955`
-- USDT on TRC20: `TGkyrQigqKChK4KSfEjTdSRBC2XZboKfAL`
-- USDT on ERC20: `0x08CA715802e9B7Be5F21D8e3aB67Ab515eDde955`
+- BTC on Bitcoin
+- ETH on Ethereum
+- USDT on TRC20
+- USDT on ERC20
+
+New installs do not bundle payout addresses. The default wallet rows stay inactive until you paste your own wallet address in WordPress admin.
 
 ## WooCommerce flow
 
@@ -51,7 +53,7 @@ Use this on any page or post:
 
 1. Install the plugin in your WordPress site.
 2. Go to `Crypto Gateway` in WordPress admin.
-3. Review the preloaded wallets and confirmations.
+3. Paste your wallet addresses into the default wallet rows and review the confirmation targets.
 4. Set your brand tagline, colors, and optional logo URL.
 5. Save the generated callback secret.
 6. Leave `Automatic watcher` enabled if you want the built-in polling flow.
