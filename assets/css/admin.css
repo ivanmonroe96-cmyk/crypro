@@ -191,6 +191,32 @@
     overflow: hidden;
 }
 
+.wcdg-table-scroll-hint {
+    color: var(--wcdg-admin-muted);
+    margin: 0 0 12px;
+}
+
+.wcdg-wallet-table-wrap {
+    margin-bottom: 12px;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.wcdg-wallet-table-wrap table {
+    min-width: 1380px;
+}
+
+.wcdg-wallet-table-wrap td:nth-child(5),
+.wcdg-wallet-table-wrap th:nth-child(5) {
+    min-width: 320px;
+}
+
+.wcdg-wallet-table-wrap td:nth-child(9),
+.wcdg-wallet-table-wrap th:nth-child(9) {
+    min-width: 260px;
+}
+
 .wcdg-admin-shell table.widefat thead th {
     background: #f7fafc;
     color: var(--wcdg-admin-muted);
