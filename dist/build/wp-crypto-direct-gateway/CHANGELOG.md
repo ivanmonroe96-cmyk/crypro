@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.5.1 - 2026-07-09
+
+- Maintenance release: version bump and rebuilt distribution package.
+
 ## 0.5.0 - 2026-07-09
 
 - Wallet payout addresses are now fully managed from the WordPress dashboard. The address field in every wallet row is editable, and the address the admin saves is exactly what customers see at checkout, on the thank-you page, in order emails, and in generated QR codes.

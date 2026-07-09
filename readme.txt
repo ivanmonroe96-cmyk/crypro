@@ -4,7 +4,7 @@ Tags: cryptocurrency, bitcoin, ethereum, usdt, woocommerce, payment gateway, qr 
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.5.0
+Stable tag: 0.5.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,6 +65,10 @@ No. The plugin includes a standalone shortcode flow as well as WooCommerce suppo
 4. WooCommerce order email payment instructions with QR code and wallet details.
 
 == Changelog ==
+
+= 0.5.1 =
+
+* Maintenance release: rebuilt distribution package and version bump.
 
 = 0.5.0 =
 
