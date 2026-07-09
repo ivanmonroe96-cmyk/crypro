@@ -160,12 +160,12 @@ class WCDG_WooCommerce_Gateway
         echo '<div class="wcdg-pay-amount">';
         echo '<div class="wcdg-pay-amount-label">' . esc_html__('Send exactly', 'wp-crypto-direct-gateway') . '</div>';
         echo '<span class="wcdg-crypto-amount">' . esc_html($record['crypto_amount'] . ' ' . $record['crypto_currency']) . '</span>';
-        echo '<span class="wcdg-fiat-amount">\u2248 ' . esc_html(number_format((float) $record['fiat_amount'], 2) . ' ' . $record['fiat_currency']) . '</span>';
+        echo '<span class="wcdg-fiat-amount">&#8776; ' . esc_html(number_format((float) $record['fiat_amount'], 2) . ' ' . $record['fiat_currency']) . '</span>';
         echo '</div>';
 
         // Details
         echo '<div class="wcdg-pay-details">';
-        echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Network', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-wallet-label">' . esc_html($record['wallet_label'] . ' \u2013 ' . $record['wallet_network']) . '</span></div>';
+        echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Network', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-wallet-label">' . esc_html($record['wallet_label'] . ' – ' . $record['wallet_network']) . '</span></div>';
         echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Reference', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-reference">' . esc_html($record['reference']) . '</span></div>';
         echo '<div class="wcdg-pay-row"><span class="wcdg-pay-row-label">' . esc_html__('Confirmations', 'wp-crypto-direct-gateway') . '</span><span class="wcdg-pay-row-value wcdg-confirmations">' . esc_html($confirmations . ' / ' . $required) . '</span></div>';
         echo '</div>';
@@ -190,7 +190,7 @@ class WCDG_WooCommerce_Gateway
         echo '<ol class="wcdg-steps">';
         echo '<li>' . esc_html__('Scan the QR code with your wallet app.', 'wp-crypto-direct-gateway') . '</li>';
         echo '<li>' . esc_html__('Send the exact amount shown above.', 'wp-crypto-direct-gateway') . '</li>';
-        echo '<li>' . esc_html__('Keep this page open \u2013 status updates automatically.', 'wp-crypto-direct-gateway') . '</li>';
+        echo '<li>' . esc_html__('Keep this page open – status updates automatically.', 'wp-crypto-direct-gateway') . '</li>';
         echo '</ol>';
         echo '<div class="wcdg-message" aria-live="polite"></div>';
         echo '<span class="wcdg-expires-at" hidden>' . esc_html((string) $record['expires_at']) . '</span>';

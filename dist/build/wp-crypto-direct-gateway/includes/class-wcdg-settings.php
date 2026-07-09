@@ -16,12 +16,6 @@ class WCDG_Settings
 
     public static function default_settings(): array
     {
-        $btc_qr_url = self::get_bundled_wallet_qr_url(array('btc-wallet.jpeg', 'btc-wallet.png', 'btc.jpeg'));
-        $eth_qr_url = self::get_bundled_wallet_qr_url(array('eth-wallet.jpeg', 'eth-wallet.png', 'eth.jpeg'));
-        $usdt_trc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-trc20-wallet.jpeg', 'usdt-trc20-wallet.png', 'usdttrc20.jpeg'));
-        $usdt_erc20_qr_url = self::get_bundled_wallet_qr_url(array('usdt-erc20-wallet.jpeg', 'usdt-erc20-wallet.png', 'usdterc20.jpeg'));
-        $trx_qr_url = self::get_bundled_wallet_qr_url(array('trx-wallet.jpeg', 'trx-wallet.png', 'trx.jpeg'));
-
         return array(
             'merchant_name' => get_bloginfo('name') ?: 'Merchant',
             'brand_tagline' => __('Direct wallet checkout without a custodial processor.', 'wp-crypto-direct-gateway'),
@@ -33,84 +27,78 @@ class WCDG_Settings
             'watcher_enabled' => 1,
             'callback_secret' => wp_generate_password(24, false, false),
             'qr_provider' => 'quickchart',
-            'wallets' => array(
-                array(
-                    'uid' => 'btc-bitcoin',
-                    'enabled' => 1,
-                    'symbol' => 'BTC',
-                    'name' => 'Bitcoin',
-                    'network' => 'Bitcoin',
-                    'coingecko_id' => 'bitcoin',
-                    'address' => '1BBYrzfPzHLM3Z3nMjxdARaQ4KLkPb8wuA',
-                    'static_qr_url' => $btc_qr_url,
-                    'qr_display_mode' => $btc_qr_url !== '' ? 'static' : 'dynamic',
-                    'confirmations' => 1,
-                ),
-                array(
-                    'uid' => 'eth-ethereum',
-                    'enabled' => 1,
-                    'symbol' => 'ETH',
-                    'name' => 'Ethereum',
-                    'network' => 'Ethereum',
-                    'coingecko_id' => 'ethereum',
-                    'address' => '0xad06de5251dbc286a4c1463b5a98e819fecbc4df',
-                    'static_qr_url' => $eth_qr_url,
-                    'qr_display_mode' => $eth_qr_url !== '' ? 'static' : 'dynamic',
-                    'confirmations' => 12,
-                ),
-                array(
-                    'uid' => 'usdt-trc20',
-                    'enabled' => 1,
-                    'symbol' => 'USDT',
-                    'name' => 'Tether',
-                    'network' => 'TRC20',
-                    'coingecko_id' => 'tether',
-                    'address' => 'THm1NLmnwhZro4Sq28N9SLdLGumwtcdw1k',
-                    'static_qr_url' => $usdt_trc20_qr_url,
-                    'qr_display_mode' => $usdt_trc20_qr_url !== '' ? 'static' : 'dynamic',
-                    'confirmations' => 1,
-                ),
-                array(
-                    'uid' => 'usdt-erc20',
-                    'enabled' => 1,
-                    'symbol' => 'USDT',
-                    'name' => 'Tether',
-                    'network' => 'ERC20',
-                    'coingecko_id' => 'tether',
-                    'address' => '0xad06de5251dbc286a4c1463b5a98e819fecbc4df',
-                    'static_qr_url' => $usdt_erc20_qr_url,
-                    'qr_display_mode' => $usdt_erc20_qr_url !== '' ? 'static' : 'dynamic',
-                    'confirmations' => 1,
-                ),
-                array(
-                    'uid' => 'trx-trc20',
-                    'enabled' => 1,
-                    'symbol' => 'TRX',
-                    'name' => 'TRON',
-                    'network' => 'TRC20',
-                    'coingecko_id' => 'tron',
-                    'address' => 'THm1NLmnwhZro4Sq28N9SLdLGumwtcdw1k',
-                    'static_qr_url' => $trx_qr_url,
-                    'qr_display_mode' => $trx_qr_url !== '' ? 'static' : 'dynamic',
-                    'confirmations' => 1,
-                ),
-            ),
+            'wallets' => self::default_wallet_templates(),
         );
     }
 
-    private static function get_bundled_wallet_qr_url(array $filenames): string
+    /**
+     * Wallet templates ship without payout addresses on purpose. Rows stay
+     * hidden from checkout until the store admin pastes their own address.
+     */
+    public static function default_wallet_templates(): array
     {
-        foreach ($filenames as $filename) {
-            $path = WCDG_PLUGIN_DIR . 'assets/wallet-qr/' . $filename;
-
-            if (! file_exists($path)) {
-                continue;
-            }
-
-            return esc_url_raw(WCDG_PLUGIN_URL . 'assets/wallet-qr/' . rawurlencode($filename));
-        }
-
-        return '';
+        return array(
+            array(
+                'uid' => 'btc-bitcoin',
+                'enabled' => 1,
+                'symbol' => 'BTC',
+                'name' => 'Bitcoin',
+                'network' => 'Bitcoin',
+                'coingecko_id' => 'bitcoin',
+                'address' => '',
+                'static_qr_url' => '',
+                'qr_display_mode' => 'dynamic',
+                'confirmations' => 1,
+            ),
+            array(
+                'uid' => 'eth-ethereum',
+                'enabled' => 1,
+                'symbol' => 'ETH',
+                'name' => 'Ethereum',
+                'network' => 'Ethereum',
+                'coingecko_id' => 'ethereum',
+                'address' => '',
+                'static_qr_url' => '',
+                'qr_display_mode' => 'dynamic',
+                'confirmations' => 12,
+            ),
+            array(
+                'uid' => 'usdt-trc20',
+                'enabled' => 1,
+                'symbol' => 'USDT',
+                'name' => 'Tether',
+                'network' => 'TRC20',
+                'coingecko_id' => 'tether',
+                'address' => '',
+                'static_qr_url' => '',
+                'qr_display_mode' => 'dynamic',
+                'confirmations' => 1,
+            ),
+            array(
+                'uid' => 'usdt-erc20',
+                'enabled' => 1,
+                'symbol' => 'USDT',
+                'name' => 'Tether',
+                'network' => 'ERC20',
+                'coingecko_id' => 'tether',
+                'address' => '',
+                'static_qr_url' => '',
+                'qr_display_mode' => 'dynamic',
+                'confirmations' => 1,
+            ),
+            array(
+                'uid' => 'trx-trc20',
+                'enabled' => 1,
+                'symbol' => 'TRX',
+                'name' => 'TRON',
+                'network' => 'TRC20',
+                'coingecko_id' => 'tron',
+                'address' => '',
+                'static_qr_url' => '',
+                'qr_display_mode' => 'dynamic',
+                'confirmations' => 1,
+            ),
+        );
     }
 
     public function hooks(): void
@@ -138,7 +126,17 @@ class WCDG_Settings
         $settings = is_array($settings) ? $settings : array();
         $defaults = self::default_settings();
 
-        $settings['wallets'] = self::merge_wallets($settings['wallets'] ?? array(), $defaults['wallets']);
+        if (isset($settings['wallets']) && is_array($settings['wallets'])) {
+            // Saved wallets are authoritative: never merge template rows back
+            // in, so deleted rows stay deleted and addresses are only ever
+            // what the admin saved.
+            $settings['wallets'] = array_values(array_map(
+                array(__CLASS__, 'sanitize_wallet'),
+                array_filter($settings['wallets'], 'is_array')
+            ));
+        } else {
+            $settings['wallets'] = $defaults['wallets'];
+        }
 
         return wp_parse_args($settings, $defaults);
     }
@@ -242,8 +240,9 @@ class WCDG_Settings
         check_admin_referer('wcdg_save_settings');
 
         $wallets = array();
+        $invalid_wallets = array();
+        $used_uids = array();
         $submitted_wallets = isset($_POST['wallets']) && is_array($_POST['wallets']) ? wp_unslash($_POST['wallets']) : array();
-        $default_wallets = array_column(self::default_settings()['wallets'], null, 'uid');
 
         foreach ($submitted_wallets as $wallet) {
             if (! is_array($wallet)) {
@@ -251,9 +250,31 @@ class WCDG_Settings
             }
 
             $sanitized = self::sanitize_wallet($wallet);
-            // Always enforce the hardcoded address; do not allow user changes.
-            if (isset($default_wallets[$sanitized['uid']])) {
-                $sanitized['address'] = $default_wallets[$sanitized['uid']]['address'];
+
+            // Skip fully blank rows (e.g. an added row that was never filled in).
+            if ($sanitized['symbol'] === '' && $sanitized['name'] === '' && $sanitized['address'] === '') {
+                continue;
+            }
+
+            if ($sanitized['uid'] === '') {
+                $sanitized['uid'] = self::build_wallet_uid($sanitized['symbol'], $sanitized['network']);
+            }
+
+            $base_uid = $sanitized['uid'] !== '' ? $sanitized['uid'] : 'wallet';
+            $unique_uid = $base_uid;
+            $suffix = 2;
+            while (isset($used_uids[$unique_uid])) {
+                $unique_uid = $base_uid . '-' . $suffix;
+                $suffix++;
+            }
+            $used_uids[$unique_uid] = true;
+            $sanitized['uid'] = $unique_uid;
+
+            // A wallet with an address that does not match its network format
+            // must never reach checkout: disable it and flag it to the admin.
+            if ($sanitized['address'] !== '' && ! WCDG_Crypto::validate_address($sanitized['address'], $sanitized['symbol'], $sanitized['network'])) {
+                $sanitized['enabled'] = 0;
+                $invalid_wallets[] = trim($sanitized['symbol'] . ' ' . $sanitized['network']);
             }
 
             $wallets[] = $sanitized;
@@ -269,7 +290,7 @@ class WCDG_Settings
             'payment_window_minutes' => max(5, absint($_POST['payment_window_minutes'] ?? 30)),
             'watcher_enabled' => empty($_POST['watcher_enabled']) ? 0 : 1,
             'callback_secret' => sanitize_text_field(wp_unslash($_POST['callback_secret'] ?? '')),
-            'qr_provider' => sanitize_text_field(wp_unslash($_POST['qr_provider'] ?? 'quickchart')),
+            'qr_provider' => 'quickchart',
             'wallets' => $wallets,
         );
 
@@ -279,10 +300,16 @@ class WCDG_Settings
 
         update_option(self::OPTION_KEY, wp_parse_args($settings, self::default_settings()));
 
-        wp_safe_redirect(add_query_arg(array(
+        $redirect_args = array(
             'page' => 'wcdg-settings',
             'updated' => '1',
-        ), admin_url('admin.php')));
+        );
+
+        if ($invalid_wallets !== array()) {
+            $redirect_args['wcdg_invalid'] = rawurlencode(implode(', ', array_unique($invalid_wallets)));
+        }
+
+        wp_safe_redirect(add_query_arg($redirect_args, admin_url('admin.php')));
         exit;
     }
 
@@ -310,8 +337,26 @@ class WCDG_Settings
                 <div class="notice notice-success is-dismissible"><p><?php esc_html_e('Settings saved.', 'wp-crypto-direct-gateway'); ?></p></div>
             <?php endif; ?>
 
+            <?php if (! empty($_GET['wcdg_invalid'])) : ?>
+                <div class="notice notice-error">
+                    <p>
+                        <?php
+                        printf(
+                            /* translators: %s: comma-separated list of wallet symbols/networks */
+                            esc_html__('The following wallets were disabled because their address does not match the expected format for the network: %s. Please double-check and re-enable them.', 'wp-crypto-direct-gateway'),
+                            esc_html(rawurldecode(sanitize_text_field(wp_unslash($_GET['wcdg_invalid']))))
+                        );
+                        ?>
+                    </p>
+                </div>
+            <?php endif; ?>
+
             <?php if ($has_legacy_wallets) : ?>
                 <div class="notice notice-warning"><p><?php esc_html_e('Some wallet rows still contain legacy bundled sample addresses. Those rows are ignored at checkout until you replace them with your own wallet addresses.', 'wp-crypto-direct-gateway'); ?></p></div>
+            <?php endif; ?>
+
+            <?php if (empty(self::get_wallets())) : ?>
+                <div class="notice notice-warning"><p><?php esc_html_e('No enabled wallet has a payout address yet. Customers will not see any crypto payment option until you paste at least one wallet address below and save.', 'wp-crypto-direct-gateway'); ?></p></div>
             <?php endif; ?>
 
             <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>">
@@ -423,17 +468,24 @@ class WCDG_Settings
                                 <th><?php esc_html_e('Confirmations', 'wp-crypto-direct-gateway'); ?></th>
                                 <th><?php esc_html_e('QR mode', 'wp-crypto-direct-gateway'); ?></th>
                                 <th><?php esc_html_e('Static QR image', 'wp-crypto-direct-gateway'); ?></th>
+                                <th><?php esc_html_e('Actions', 'wp-crypto-direct-gateway'); ?></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($wallets as $index => $wallet) : ?>
-                                <?php $this->render_wallet_row((int) $index, self::sanitize_wallet($wallet)); ?>
+                                <?php $this->render_wallet_row((string) $index, self::sanitize_wallet($wallet)); ?>
                             <?php endforeach; ?>
                         </tbody>
                         </table>
                     </div>
 
+                    <p>
+                        <button type="button" class="button button-secondary" id="wcdg-add-wallet"><?php esc_html_e('Add wallet', 'wp-crypto-direct-gateway'); ?></button>
+                    </p>
 
+                    <template id="wcdg-wallet-row-template">
+                        <?php $this->render_wallet_row('__INDEX__', self::sanitize_wallet(array('enabled' => 1, 'confirmations' => 1))); ?>
+                    </template>
                 </section>
 
                 <section class="wcdg-admin-panel">
@@ -454,29 +506,31 @@ class WCDG_Settings
         <?php
     }
 
-    public function render_wallet_row(int $index, array $wallet): void
+    public function render_wallet_row(string $index, array $wallet): void
     {
         ?>
-        <tr>
-            <td><input type="hidden" name="wallets[<?php echo esc_attr((string) $index); ?>][uid]" value="<?php echo esc_attr($wallet['uid']); ?>" /><input type="checkbox" name="wallets[<?php echo esc_attr((string) $index); ?>][enabled]" value="1" <?php checked((bool) $wallet['enabled']); ?> /></td>
-            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr((string) $index); ?>][symbol]" value="<?php echo esc_attr($wallet['symbol']); ?>" /></td>
-            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr((string) $index); ?>][name]" value="<?php echo esc_attr($wallet['name']); ?>" /></td>
-            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr((string) $index); ?>][network]" value="<?php echo esc_attr($wallet['network']); ?>" /></td>
-            <td><input type="hidden" name="wallets[<?php echo esc_attr((string) $index); ?>][address]" value="<?php echo esc_attr($wallet['address']); ?>" /><code><?php echo esc_html($wallet['address']); ?></code></td>
-            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr((string) $index); ?>][coingecko_id]" value="<?php echo esc_attr($wallet['coingecko_id']); ?>" /></td>
-            <td><input type="number" class="small-text" min="1" name="wallets[<?php echo esc_attr((string) $index); ?>][confirmations]" value="<?php echo esc_attr((string) $wallet['confirmations']); ?>" /></td>
+        <tr class="wcdg-wallet-row">
+            <td><input type="hidden" name="wallets[<?php echo esc_attr($index); ?>][uid]" value="<?php echo esc_attr($wallet['uid']); ?>" /><input type="checkbox" name="wallets[<?php echo esc_attr($index); ?>][enabled]" value="1" <?php checked((bool) $wallet['enabled']); ?> /></td>
+            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr($index); ?>][symbol]" value="<?php echo esc_attr($wallet['symbol']); ?>" placeholder="<?php esc_attr_e('BTC', 'wp-crypto-direct-gateway'); ?>" /></td>
+            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr($index); ?>][name]" value="<?php echo esc_attr($wallet['name']); ?>" placeholder="<?php esc_attr_e('Bitcoin', 'wp-crypto-direct-gateway'); ?>" /></td>
+            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr($index); ?>][network]" value="<?php echo esc_attr($wallet['network']); ?>" placeholder="<?php esc_attr_e('Bitcoin, ERC20, TRC20…', 'wp-crypto-direct-gateway'); ?>" /></td>
+            <td><input type="text" class="regular-text code wcdg-wallet-address" name="wallets[<?php echo esc_attr($index); ?>][address]" value="<?php echo esc_attr($wallet['address']); ?>" placeholder="<?php esc_attr_e('Paste your wallet address', 'wp-crypto-direct-gateway'); ?>" autocomplete="off" spellcheck="false" /></td>
+            <td><input type="text" class="regular-text" name="wallets[<?php echo esc_attr($index); ?>][coingecko_id]" value="<?php echo esc_attr($wallet['coingecko_id']); ?>" /></td>
+            <td><input type="number" class="small-text" min="1" name="wallets[<?php echo esc_attr($index); ?>][confirmations]" value="<?php echo esc_attr((string) $wallet['confirmations']); ?>" /></td>
             <td>
-                <select name="wallets[<?php echo esc_attr((string) $index); ?>][qr_display_mode]">
+                <select name="wallets[<?php echo esc_attr($index); ?>][qr_display_mode]">
                     <option value="dynamic" <?php selected($wallet['qr_display_mode'], 'dynamic'); ?>><?php esc_html_e('Dynamic', 'wp-crypto-direct-gateway'); ?></option>
                     <option value="static" <?php selected($wallet['qr_display_mode'], 'static'); ?>><?php esc_html_e('Static image', 'wp-crypto-direct-gateway'); ?></option>
                 </select>
             </td>
             <td>
                 <div class="wcdg-qr-upload-field">
-                    <input type="url" class="regular-text code" name="wallets[<?php echo esc_attr((string) $index); ?>][static_qr_url]" value="<?php echo esc_attr($wallet['static_qr_url']); ?>" />
+                    <input type="url" class="regular-text code" name="wallets[<?php echo esc_attr($index); ?>][static_qr_url]" value="<?php echo esc_attr($wallet['static_qr_url']); ?>" />
                     <button type="button" class="button wcdg-upload-qr"><?php esc_html_e('Choose image', 'wp-crypto-direct-gateway'); ?></button>
                 </div>
+                <p class="description"><?php esc_html_e('If you use a static QR image, it must encode the exact address in this row.', 'wp-crypto-direct-gateway'); ?></p>
             </td>
+            <td><button type="button" class="button-link-delete wcdg-remove-wallet"><?php esc_html_e('Remove', 'wp-crypto-direct-gateway'); ?></button></td>
         </tr>
         <?php
     }
@@ -494,9 +548,9 @@ class WCDG_Settings
             'name' => sanitize_text_field((string) ($wallet['name'] ?? '')),
             'network' => $network,
             'coingecko_id' => sanitize_key((string) ($wallet['coingecko_id'] ?? '')),
-            'address' => sanitize_text_field((string) ($wallet['address'] ?? '')),
+            'address' => (string) preg_replace('/\s+/', '', sanitize_text_field((string) ($wallet['address'] ?? ''))),
             'static_qr_url' => esc_url_raw((string) ($wallet['static_qr_url'] ?? '')),
-            'qr_display_mode' => in_array((string) ($wallet['qr_display_mode'] ?? 'dynamic'), array('dynamic', 'static'), true) ? (string) $wallet['qr_display_mode'] : 'dynamic',
+            'qr_display_mode' => in_array((string) ($wallet['qr_display_mode'] ?? ''), array('dynamic', 'static'), true) ? (string) $wallet['qr_display_mode'] : 'dynamic',
             'confirmations' => max(1, absint($wallet['confirmations'] ?? 1)),
         );
     }
@@ -509,64 +563,4 @@ class WCDG_Settings
         return trim((string) $base, '-');
     }
 
-    private static function merge_wallets(array $saved_wallets, array $default_wallets): array
-    {
-        $normalized_saved = array();
-
-        foreach ($saved_wallets as $wallet) {
-            if (! is_array($wallet)) {
-                continue;
-            }
-
-            $normalized = self::sanitize_wallet($wallet);
-            if ($normalized['uid'] === '') {
-                continue;
-            }
-
-            $normalized_saved[$normalized['uid']] = $normalized;
-        }
-
-        foreach ($default_wallets as $wallet) {
-            $default_wallet = self::sanitize_wallet($wallet);
-            $uid = $default_wallet['uid'];
-
-            if (! isset($normalized_saved[$uid])) {
-                $normalized_saved[$uid] = $default_wallet;
-                continue;
-            }
-
-            $saved_wallet = $normalized_saved[$uid];
-            if ($saved_wallet['address'] === '' && $default_wallet['address'] !== '') {
-                $saved_wallet['address'] = $default_wallet['address'];
-            }
-
-            if ($saved_wallet['coingecko_id'] === '' && $default_wallet['coingecko_id'] !== '') {
-                $saved_wallet['coingecko_id'] = $default_wallet['coingecko_id'];
-            }
-
-            if ($saved_wallet['name'] === '' && $default_wallet['name'] !== '') {
-                $saved_wallet['name'] = $default_wallet['name'];
-            }
-
-            if ($saved_wallet['network'] === '' && $default_wallet['network'] !== '') {
-                $saved_wallet['network'] = $default_wallet['network'];
-            }
-
-            if ($saved_wallet['uid'] === '' && $uid !== '') {
-                $saved_wallet['uid'] = $uid;
-            }
-
-            if ($saved_wallet['static_qr_url'] === '' && $default_wallet['static_qr_url'] !== '') {
-                $saved_wallet['static_qr_url'] = $default_wallet['static_qr_url'];
-            }
-
-            if ($saved_wallet['qr_display_mode'] === '' && $default_wallet['qr_display_mode'] !== '') {
-                $saved_wallet['qr_display_mode'] = $default_wallet['qr_display_mode'];
-            }
-
-            $normalized_saved[$uid] = $saved_wallet;
-        }
-
-        return array_values($normalized_saved);
-    }
 }

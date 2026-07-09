@@ -217,6 +217,24 @@
     min-width: 260px;
 }
 
+.wcdg-wallet-table-wrap .wcdg-wallet-address {
+    width: 100%;
+    font-family: Consolas, Monaco, monospace;
+}
+
+.wcdg-wallet-table-wrap td:nth-child(10),
+.wcdg-wallet-table-wrap th:nth-child(10) {
+    min-width: 80px;
+}
+
+.wcdg-remove-wallet {
+    color: #b32d2e;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
 .wcdg-admin-shell table.widefat thead th {
     background: #f7fafc;
     color: var(--wcdg-admin-muted);

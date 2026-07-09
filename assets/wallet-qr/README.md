@@ -1,23 +1,20 @@
-Place optional static wallet QR images in this folder if you want them bundled with the plugin package.
+# Static wallet QR images
 
-Canonical filenames:
-- btc-wallet.jpeg
-- eth-wallet.jpeg
-- usdt-erc20-wallet.jpeg
-- usdt-trc20-wallet.jpeg
+The plugin no longer bundles any wallet QR images, and it never bundles wallet
+addresses. Every payout address is entered by the site administrator under
+**Crypto Gateway → Wallets** in the WordPress dashboard.
 
-Backward-compatible filenames still supported:
-- btc-wallet.png
-- btc.jpeg
-- eth-wallet.png
-- eth.jpeg
-- usdt-erc20-wallet.png
-- usdterc20.jpeg
-- usdt-trc20-wallet.png
-- usdttrc20.jpeg
+By default each wallet uses **dynamic QR mode**: the QR code is generated per
+payment request from the address you saved, so it always matches what the
+customer sees.
 
-If you use any of those exact filenames, the plugin will auto-detect them and connect them to the matching wallet templates.
+If you prefer a static image for a wallet:
 
-You can also paste any other asset URL into the wallet row inside the plugin settings page and switch QR mode to Static image.
+1. Upload your own QR image via the **Choose image** button in the wallet row
+   (or paste any image URL into the *Static QR image* field).
+2. Switch that row's *QR mode* to **Static image**.
+3. Make sure the image encodes the exact same address as the row — the plugin
+   cannot verify the contents of an image.
 
-Dynamic QR generation stays available and is still the default mode for all wallets.
+If you replace a wallet address later, remember to replace its static QR image
+too, or switch the row back to dynamic mode.

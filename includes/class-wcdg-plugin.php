@@ -94,6 +94,13 @@ class WCDG_Plugin
 
         wp_enqueue_media();
         wp_register_style('wcdg-admin', WCDG_PLUGIN_URL . 'assets/css/admin.css', array(), WCDG_VERSION);
+        wp_register_script('wcdg-admin', WCDG_PLUGIN_URL . 'assets/js/admin.js', array(), WCDG_VERSION, true);
+
+        wp_localize_script('wcdg-admin', 'wcdgAdminConfig', array(
+            'confirmRemove' => __('Remove this wallet row? It will stop being offered at checkout after you save.', 'wp-crypto-direct-gateway'),
+            'chooseQrTitle' => __('Choose a static QR image', 'wp-crypto-direct-gateway'),
+        ));
+        wp_enqueue_script('wcdg-admin');
 
         $settings = WCDG_Settings::get_settings();
         $inline_css = sprintf(

@@ -10,6 +10,36 @@ class WCDG_Crypto
 
     public const TRC20_USDT_CONTRACT = 'TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t';
 
+    /**
+     * Format-check an admin-supplied payout address. Strict for the chains the
+     * plugin knows (Bitcoin, EVM, TRON); a permissive sanity check otherwise so
+     * merchants can still add coins the plugin has no dedicated support for.
+     */
+    public static function validate_address(string $address, string $symbol, string $network): bool
+    {
+        $address = trim($address);
+        if ($address === '') {
+            return false;
+        }
+
+        $symbol = strtoupper($symbol);
+        $network = strtoupper($network);
+
+        if ($symbol === 'BTC' || $network === 'BITCOIN') {
+            return (bool) preg_match('/^(bc1[02-9ac-hj-np-z]{11,87}|[13][1-9A-HJ-NP-Za-km-z]{25,34})$/', $address);
+        }
+
+        if (in_array($network, array('ETHEREUM', 'ERC20', 'BEP20', 'BSC', 'POLYGON', 'ARBITRUM', 'OPTIMISM', 'BASE'), true) || $symbol === 'ETH') {
+            return (bool) preg_match('/^0x[a-fA-F0-9]{40}$/', $address);
+        }
+
+        if ($network === 'TRC20' || $network === 'TRON' || $symbol === 'TRX') {
+            return (bool) preg_match('/^T[1-9A-HJ-NP-Za-km-z]{33}$/', $address);
+        }
+
+        return (bool) preg_match('/^[a-zA-Z0-9:_-]{12,128}$/', $address);
+    }
+
     public static function get_precision(array $wallet): int
     {
         $symbol = strtoupper((string) ($wallet['symbol'] ?? ''));

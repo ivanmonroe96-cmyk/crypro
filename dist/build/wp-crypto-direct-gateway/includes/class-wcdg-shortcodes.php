@@ -49,7 +49,7 @@ class WCDG_Shortcodes
                             <span><?php esc_html_e('Cryptocurrency', 'wp-crypto-direct-gateway'); ?></span>
                             <select name="wallet_id" required>
                                 <?php foreach ($wallets as $wallet) : ?>
-                                    <option value="<?php echo esc_attr($wallet['uid']); ?>"><?php echo esc_html($wallet['name'] . ' (' . $wallet['symbol'] . ' \u2013 ' . $wallet['network'] . ')'); ?></option>
+                                    <option value="<?php echo esc_attr($wallet['uid']); ?>"><?php echo esc_html($wallet['name'] . ' (' . $wallet['symbol'] . ' – ' . $wallet['network'] . ')'); ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </label>
@@ -98,7 +98,7 @@ class WCDG_Shortcodes
                         <ol class="wcdg-steps">
                             <li><?php esc_html_e('Scan the QR code with your wallet app.', 'wp-crypto-direct-gateway'); ?></li>
                             <li><?php esc_html_e('Send the exact amount shown above.', 'wp-crypto-direct-gateway'); ?></li>
-                            <li><?php esc_html_e('Keep this page open \u2013 status updates automatically.', 'wp-crypto-direct-gateway'); ?></li>
+                            <li><?php esc_html_e('Keep this page open – status updates automatically.', 'wp-crypto-direct-gateway'); ?></li>
                         </ol>
                         <div class="wcdg-message" aria-live="polite"></div>
                         <span class="wcdg-expires-at" hidden></span>

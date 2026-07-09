@@ -4,7 +4,7 @@ Tags: cryptocurrency, bitcoin, ethereum, usdt, woocommerce, payment gateway, qr 
 Requires at least: 6.0
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 0.3.0
+Stable tag: 0.5.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,6 +66,17 @@ No. The plugin includes a standalone shortcode flow as well as WooCommerce suppo
 
 == Changelog ==
 
+= 0.5.0 =
+
+* Wallet payout addresses are now fully managed from the WordPress dashboard: every address field is editable and whatever the admin saves is exactly what customers see at checkout, on the thank-you page, in emails, and in QR codes.
+* Removed all bundled/hardcoded wallet addresses and the code path that overrode admin-entered addresses on save.
+* Removed bundled static QR images; wallets default to dynamic QR codes generated from the saved address.
+* Added Add wallet / Remove wallet controls so any coin and network can be configured.
+* Added per-network address format validation (Bitcoin, EVM chains, TRON); invalid addresses are disabled with an admin notice instead of reaching checkout.
+* Fixed the wallet static QR "Choose image" button (now opens the WordPress media library).
+* Deleted wallet rows no longer reappear after saving.
+* Fixed literal "–"/"≈" text appearing in checkout, thank-you page, and email output.
+
 = 0.3.0 =
 
 * Professional QR-centric payment UI redesign.
@@ -89,6 +100,10 @@ No. The plugin includes a standalone shortcode flow as well as WooCommerce suppo
 * Initial direct crypto payment gateway release with WooCommerce support, QR checkout, wallet management, and automatic watcher services.
 
 == Upgrade Notice ==
+
+= 0.5.0 =
+
+Important: wallet payout addresses are now fully admin-managed. After updating, open Crypto Gateway settings and verify every wallet row contains YOUR address.
 
 = 0.3.0 =
 
